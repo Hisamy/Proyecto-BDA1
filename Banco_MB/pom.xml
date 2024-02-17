@@ -7,6 +7,11 @@
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.23</version> <!-- Asegúrate de usar la versión más reciente -->
+        </dependency>
+        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>BancoMBDominio</artifactId>
             <version>${project.version}</version>
