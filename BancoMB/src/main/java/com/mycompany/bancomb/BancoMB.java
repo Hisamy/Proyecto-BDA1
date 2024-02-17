@@ -1,16 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
+
 
 package com.mycompany.bancomb;
 
-/**
- *
- * @author hisam
- */
+
 public class BancoMB {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+      String cadenaConexion = "jdbc:mysql://localhost/banco";
+        String usuario = "root";
+        String password = "cinco123";
+        IConexion conexion = new Conexion(cadenaConexion, usuario, password);
+        IClientesDAO clientesDAO = new ClientesDAO(conexion);
+        IRetiroSinCuentaDAO retirosSinCuentaDAO = new RetirosSinCuentaDAO(conexion);
+        RetiroSinCuentaForm clientesForm = new RetiroSinCuentaForm(clientesDAO);
+        clientesForm.setVisible(true);
     }
 }
