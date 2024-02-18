@@ -4,8 +4,6 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
-import org.itson.bda.proyectobda_247164_246943.bancoMB.Clientes;
-import org.itson.bda.proyectobda_247164_246943.bancoMB.Domicilio;
 import org.itson.bda.proyectobda_247164_246943.conexiones.Conexion;
 import org.itson.bda.proyectobda_247164_246943.conexiones.IConexion;
 import org.itson.bda.proyectobda_247164_246943.daos.ClientesDAO;
@@ -14,7 +12,6 @@ import org.itson.bda.proyectobda_247164_246943.daos.IClientesDAO;
 import org.itson.bda.proyectobda_247164_246943.daos.IDomiciliosDAO;
 import org.itson.bda.proyectobda_247164_246943.dtos.ClienteNuevoDTO;
 import org.itson.bda.proyectobda_247164_246943.dtos.DomicilioNuevoDTO;
-import org.itson.bda.proyectobda_247164_246943.dtos.RetiroSinCuentaNuevoDTO;
 import org.itson.bda.proyectobda_247164_246943.excepciones.PersistenciaException;
 
 public class RegistroCliente extends javax.swing.JFrame {

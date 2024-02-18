@@ -58,10 +58,10 @@ public class DomiciliosDAO implements IDomiciliosDAO{
                               """;
         try (
                 Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL, Statement.RETURN_GENERATED_KEYS);) {
-            comando.setInt(1, domicilioNuevo.getCP());
+            comando.setInt(1, domicilioNuevo.getNumeroDomicilio());
             comando.setString(2, domicilioNuevo.getCalle());
-             comando.setString(2, domicilioNuevo.getColonia());
-            comando.setInt(3, domicilioNuevo.getNumeroDomicilio());
+             comando.setString(3, domicilioNuevo.getColonia());
+            comando.setInt(4, domicilioNuevo.getCP());
             int numeroRegistrosInsertados = comando.executeUpdate();
             logger.log(Level.INFO, "Se agregaron {0} domicilios", numeroRegistrosInsertados);
             ResultSet numeroCuentasGeneradas = comando.getGeneratedKeys();

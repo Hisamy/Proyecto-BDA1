@@ -56,28 +56,27 @@ public class ClientesDAO implements IClientesDAO {
 
     @Override
     public Clientes agregar(ClienteNuevoDTO clienteNuevo) throws PersistenciaException {
-        String sentenciaSQL = """
-                              INSERT INTO clientes(correo,fecha_nacimeinto,nombre, apellido_paterno, apellido_materno) 
-                              VALUES(?, ?, ?, ?,?);
-                              """;
-        try (
-            Connection conexion = this.conexionBD.obtenerConexion(); 
-            PreparedStatement comando = conexion.prepareStatement(sentenciaSQL, Statement.RETURN_GENERATED_KEYS);
-        ) {
-            comando.setString(1, clienteNuevo.getCorreoElectronico());
-            comando.setDate(2, clienteNuevo.getFechaNacimiento());            
-            comando.setString(3, clienteNuevo.getNombre());
-            comando.setString(4, clienteNuevo.getApellidoPaterno());
-            comando.setString(5, clienteNuevo.getApellidoMaterno());
-            int numeroRegistrosInsertados = comando.executeUpdate();
-            logger.log(Level.INFO, "Se agregaron {0} clientes", numeroRegistrosInsertados);
-            ResultSet idsGenerados = comando.getGeneratedKeys();
-            idsGenerados.next();
-            return new Clientes(idsGenerados.getInt(1),clienteNuevo.getCorreoElectronico(),clienteNuevo.getFechaNacimiento() ,clienteNuevo.getNombre(), clienteNuevo.getApellidoPaterno(), clienteNuevo.getApellidoMaterno());
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "No se pudo guardar el cliente.", e);
-            throw new PersistenciaException("No se pudo guardar el cliente.", e);
-        }
+       String sentenciaSQL = """
+                          INSERT INTO clientes(correo, fecha_nacimiento, nombre, apellido_paterno, apellido_materno) 
+                          VALUES (?, ?, ?, ?, ?);
+                          """;
+    try (
+        Connection conexion = this.conexionBD.obtenerConexion(); 
+        PreparedStatement comando = conexion.prepareStatement(sentenciaSQL, Statement.RETURN_GENERATED_KEYS);
+    ) {
+        comando.setString(1, clienteNuevo.getCorreoElectronico());
+        comando.setDate(2, clienteNuevo.getFechaNacimiento());            
+        comando.setString(3, clienteNuevo.getNombre());
+        comando.setString(4, clienteNuevo.getApellidoPaterno());
+        comando.setString(5, clienteNuevo.getApellidoMaterno());
+        int numeroRegistrosInsertados = comando.executeUpdate();
+        logger.log(Level.INFO, "Se agregaron {0} clientes", numeroRegistrosInsertados);
+        ResultSet idsGenerados = comando.getGeneratedKeys();
+        idsGenerados.next();
+        return new Clientes(idsGenerados.getInt(1), clienteNuevo.getCorreoElectronico(), clienteNuevo.getFechaNacimiento(), clienteNuevo.getNombre(), clienteNuevo.getApellidoPaterno(), clienteNuevo.getApellidoMaterno());
+    } catch (SQLException e) {
+        logger.log(Level.SEVERE, "No se pudo guardar el cliente.", e);
+        throw new PersistenciaException("No se pudo guardar el cliente.", e);
     }
 
    
