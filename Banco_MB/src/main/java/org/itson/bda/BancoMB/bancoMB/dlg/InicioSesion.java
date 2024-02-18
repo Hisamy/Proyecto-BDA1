@@ -1,18 +1,30 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package org.itson.bda.BancoMB.bancoMB.dlg;
 
-
-public class InicioSesion extends javax.swing.JDialog {
+/**
+ *
+ * @author Usuario
+ */
+public class InicioSesion extends javax.swing.JFrame {
+    
+    private Acciones opcion;
+    MenuInicio menuInicio = new MenuInicio();
 
     /**
-     * Creates new form InicioSesion
-     * @param parent
-     * @param modal
+     * Creates new form IniciarSesion
      */
-    public InicioSesion(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public InicioSesion() {
         initComponents();
-        
+                if (opcion == Acciones.CANCELAR) {
+            btnRegresar.setText("Cancelar");
+
+        } else if (opcion == Acciones.ACEPTAR) {
+            btnIniciarSesion.setText("Aceptar");
+            
+        }
     }
 
     /**
@@ -24,118 +36,173 @@ public class InicioSesion extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PnlFondoAzul = new javax.swing.JPanel();
-        TxtFldCorreoElectronico = new javax.swing.JTextField();
-        TxtFldClave = new javax.swing.JTextField();
-        LblBienvenido = new javax.swing.JLabel();
-        LblCorreoElectronico = new javax.swing.JLabel();
-        LblClave = new javax.swing.JLabel();
-        BtnRegresar = new javax.swing.JButton();
-        BtnIniciarSesion = new javax.swing.JButton();
-        LblBancoMB = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lblBienvenido = new javax.swing.JLabel();
+        lblCorreoElectronico = new javax.swing.JLabel();
+        lblClave = new javax.swing.JLabel();
+        btnIniciarSesion = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        txtCorreoElectronico = new javax.swing.JTextField();
+        txtClave = new javax.swing.JTextField();
+        lblBancoMB = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        PnlFondoAzul.setBackground(new java.awt.Color(0, 102, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 153));
+        jPanel1.setForeground(new java.awt.Color(0, 102, 153));
 
-        LblBienvenido.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        LblBienvenido.setForeground(new java.awt.Color(255, 255, 255));
-        LblBienvenido.setText("Bienvenido");
+        lblBienvenido.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblBienvenido.setForeground(new java.awt.Color(255, 255, 255));
+        lblBienvenido.setText("Bienvenido");
 
-        LblCorreoElectronico.setForeground(new java.awt.Color(204, 204, 255));
-        LblCorreoElectronico.setText("Correo eléctronico");
+        lblCorreoElectronico.setForeground(new java.awt.Color(204, 204, 255));
+        lblCorreoElectronico.setText("Correo eléctronico");
 
-        LblClave.setForeground(new java.awt.Color(204, 204, 255));
-        LblClave.setText("Clave");
+        lblClave.setForeground(new java.awt.Color(204, 204, 255));
+        lblClave.setText("Clave");
 
-        BtnRegresar.setText("Regresar");
+        btnIniciarSesion.setText("Iniciar sesión");
+        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarSesionActionPerformed(evt);
+            }
+        });
 
-        BtnIniciarSesion.setText("Iniciar sesión");
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout PnlFondoAzulLayout = new javax.swing.GroupLayout(PnlFondoAzul);
-        PnlFondoAzul.setLayout(PnlFondoAzulLayout);
-        PnlFondoAzulLayout.setHorizontalGroup(
-            PnlFondoAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PnlFondoAzulLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(lblBienvenido))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblCorreoElectronico)
+                            .addComponent(lblClave)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnRegresar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnIniciarSesion))
+                            .addComponent(txtCorreoElectronico)
+                            .addComponent(txtClave))))
+                .addContainerGap(99, Short.MAX_VALUE))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(BtnRegresar)
-                .addGap(47, 47, 47)
-                .addGroup(PnlFondoAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PnlFondoAzulLayout.createSequentialGroup()
-                        .addGap(0, 24, Short.MAX_VALUE)
-                        .addComponent(LblBienvenido)
-                        .addGap(166, 166, 166))
-                    .addGroup(PnlFondoAzulLayout.createSequentialGroup()
-                        .addGroup(PnlFondoAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LblClave)
-                            .addComponent(LblCorreoElectronico)
-                            .addComponent(TxtFldCorreoElectronico)
-                            .addComponent(TxtFldClave, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(PnlFondoAzulLayout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addComponent(BtnIniciarSesion)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        PnlFondoAzulLayout.setVerticalGroup(
-            PnlFondoAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PnlFondoAzulLayout.createSequentialGroup()
-                .addComponent(LblBienvenido)
-                .addGap(26, 26, 26)
-                .addComponent(LblCorreoElectronico)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(lblBienvenido)
+                .addGap(18, 18, 18)
+                .addComponent(lblCorreoElectronico)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TxtFldCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(LblClave)
+                .addComponent(txtCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblClave)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TxtFldClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(BtnIniciarSesion)
-                .addGap(29, 29, 29))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlFondoAzulLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(BtnRegresar)
-                .addContainerGap())
+                .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIniciarSesion)
+                    .addComponent(btnRegresar))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        LblBancoMB.setFont(new java.awt.Font("Yu Gothic Medium", 3, 14)); // NOI18N
-        LblBancoMB.setForeground(new java.awt.Color(0, 0, 102));
-        LblBancoMB.setText("Banco MB");
+        lblBancoMB.setFont(new java.awt.Font("Yu Gothic Medium", 3, 14)); // NOI18N
+        lblBancoMB.setForeground(new java.awt.Color(0, 51, 102));
+        lblBancoMB.setText("Banco MB");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PnlFondoAzul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(164, 164, 164)
-                .addComponent(LblBancoMB, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblBancoMB, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(152, 152, 152))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(LblBancoMB)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(PnlFondoAzul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblBancoMB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-   
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        // TODO add your handling code here:
+        menuInicio.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIniciarSesionActionPerformed
+
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(IniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(IniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(IniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(IniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new InicioSesion().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnIniciarSesion;
-    private javax.swing.JButton BtnRegresar;
-    private javax.swing.JLabel LblBancoMB;
-    private javax.swing.JLabel LblBienvenido;
-    private javax.swing.JLabel LblClave;
-    private javax.swing.JLabel LblCorreoElectronico;
-    private javax.swing.JPanel PnlFondoAzul;
-    private javax.swing.JTextField TxtFldClave;
-    private javax.swing.JTextField TxtFldCorreoElectronico;
+    private javax.swing.JButton btnIniciarSesion;
+    private javax.swing.JButton btnRegresar;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblBancoMB;
+    private javax.swing.JLabel lblBienvenido;
+    private javax.swing.JLabel lblClave;
+    private javax.swing.JLabel lblCorreoElectronico;
+    private javax.swing.JTextField txtClave;
+    private javax.swing.JTextField txtCorreoElectronico;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,12 +24,14 @@ public class MenuInicio extends javax.swing.JFrame {
         PnlFondoAzul = new javax.swing.JPanel();
         btnIniciarSesion = new javax.swing.JButton();
         btnRegistrarse = new javax.swing.JButton();
-        LblBancoMB = new javax.swing.JLabel();
+        lblBancoMB = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
         PnlFondoAzulAbajo = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
-        BtnRetirarSinCuenta = new javax.swing.JButton();
-        LblDecoracion1 = new javax.swing.JLabel();
-        LblDeocracion2 = new javax.swing.JLabel();
+        btnRetirarSinCuenta = new javax.swing.JButton();
+        lblDecoracion1 = new javax.swing.JLabel();
+        lblDeocracion2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,9 +51,9 @@ public class MenuInicio extends javax.swing.JFrame {
             }
         });
 
-        LblBancoMB.setFont(new java.awt.Font("Yu Gothic Medium", 3, 14)); // NOI18N
-        LblBancoMB.setForeground(new java.awt.Color(255, 255, 255));
-        LblBancoMB.setText("Banco MB");
+        lblBancoMB.setFont(new java.awt.Font("Yu Gothic Medium", 3, 14)); // NOI18N
+        lblBancoMB.setForeground(new java.awt.Color(255, 255, 255));
+        lblBancoMB.setText("Banco MB");
 
         javax.swing.GroupLayout PnlFondoAzulLayout = new javax.swing.GroupLayout(PnlFondoAzul);
         PnlFondoAzul.setLayout(PnlFondoAzulLayout);
@@ -59,12 +61,13 @@ public class MenuInicio extends javax.swing.JFrame {
             PnlFondoAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlFondoAzulLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(LblBancoMB, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblBancoMB, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
                 .addComponent(btnIniciarSesion)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegistrarse)
                 .addContainerGap())
+            .addComponent(jSeparator2)
         );
         PnlFondoAzulLayout.setVerticalGroup(
             PnlFondoAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,8 +76,9 @@ public class MenuInicio extends javax.swing.JFrame {
                 .addGroup(PnlFondoAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIniciarSesion)
                     .addComponent(btnRegistrarse)
-                    .addComponent(LblBancoMB))
-                .addContainerGap(11, Short.MAX_VALUE))
+                    .addComponent(lblBancoMB))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         PnlFondoAzulAbajo.setBackground(new java.awt.Color(0, 51, 102));
@@ -83,11 +87,13 @@ public class MenuInicio extends javax.swing.JFrame {
         PnlFondoAzulAbajo.setLayout(PnlFondoAzulAbajoLayout);
         PnlFondoAzulAbajoLayout.setHorizontalGroup(
             PnlFondoAzulAbajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jSeparator1)
         );
         PnlFondoAzulAbajoLayout.setVerticalGroup(
             PnlFondoAzulAbajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+            .addGroup(PnlFondoAzulAbajoLayout.createSequentialGroup()
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 30, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
@@ -103,21 +109,21 @@ public class MenuInicio extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        BtnRetirarSinCuenta.setForeground(new java.awt.Color(0, 51, 102));
-        BtnRetirarSinCuenta.setText("Retirar sin cuenta");
-        BtnRetirarSinCuenta.addActionListener(new java.awt.event.ActionListener() {
+        btnRetirarSinCuenta.setForeground(new java.awt.Color(0, 51, 102));
+        btnRetirarSinCuenta.setText("Retirar sin cuenta");
+        btnRetirarSinCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnRetirarSinCuentaActionPerformed(evt);
+                btnRetirarSinCuentaActionPerformed(evt);
             }
         });
 
-        LblDecoracion1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        LblDecoracion1.setForeground(new java.awt.Color(0, 51, 102));
-        LblDecoracion1.setText("Registrate en la app");
+        lblDecoracion1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblDecoracion1.setForeground(new java.awt.Color(0, 51, 102));
+        lblDecoracion1.setText("Registrate en la app");
 
-        LblDeocracion2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        LblDeocracion2.setForeground(new java.awt.Color(0, 51, 102));
-        LblDeocracion2.setText("y sácale todo el partido!");
+        lblDeocracion2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblDeocracion2.setForeground(new java.awt.Color(0, 51, 102));
+        lblDeocracion2.setText("y sácale todo el partido!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,20 +133,18 @@ public class MenuInicio extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(LblDecoracion1)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(LblDeocracion2)
-                                .addGap(21, 21, 21))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(BtnRetirarSinCuenta)
-                                .addGap(45, 45, 45))))))
+                        .addComponent(btnRetirarSinCuenta)
+                        .addGap(45, 45, 45))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblDeocracion2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblDecoracion1)
+                                .addGap(24, 24, 24)))
+                        .addGap(21, 21, 21))))
             .addComponent(PnlFondoAzul, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -154,12 +158,12 @@ public class MenuInicio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(88, 88, 88)
-                        .addComponent(LblDecoracion1)
+                        .addComponent(lblDecoracion1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LblDeocracion2)
+                        .addComponent(lblDeocracion2)
                         .addGap(18, 18, 18)
-                        .addComponent(BtnRetirarSinCuenta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)))
+                        .addComponent(btnRetirarSinCuenta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)))
                 .addComponent(PnlFondoAzulAbajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -168,7 +172,8 @@ public class MenuInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-     InicioSesion inicioSesion = new InicioSesion(this, rootPaneCheckingEnabled);
+ 
+     InicioSesion inicioSesion = new InicioSesion();
      inicioSesion.setVisible(true);
      dispose();
       
@@ -181,9 +186,12 @@ public class MenuInicio extends javax.swing.JFrame {
     dispose();
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
-    private void BtnRetirarSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRetirarSinCuentaActionPerformed
+    private void btnRetirarSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarSinCuentaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BtnRetirarSinCuentaActionPerformed
+        RetirarSinCuenta retirarSinCuenta = new RetirarSinCuenta();
+        retirarSinCuenta.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnRetirarSinCuentaActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -221,14 +229,16 @@ public class MenuInicio extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnRetirarSinCuenta;
-    private javax.swing.JLabel LblBancoMB;
-    private javax.swing.JLabel LblDecoracion1;
-    private javax.swing.JLabel LblDeocracion2;
     private javax.swing.JPanel PnlFondoAzul;
     private javax.swing.JPanel PnlFondoAzulAbajo;
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnRegistrarse;
+    private javax.swing.JButton btnRetirarSinCuenta;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblBancoMB;
+    private javax.swing.JLabel lblDecoracion1;
+    private javax.swing.JLabel lblDeocracion2;
     // End of variables declaration//GEN-END:variables
 }
