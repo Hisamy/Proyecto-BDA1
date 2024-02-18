@@ -13,5 +13,5 @@ public interface IClientesDAO {
     
     List<Clientes> consultar() throws PersistenciaException;
 
-    Clientes agregar(ClienteNuevoDTO socioNuevo) throws PersistenciaException;
+    Clientes agregar(ClienteNuevoDTO clienteNuevo) throws PersistenciaException;
 }
