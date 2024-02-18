@@ -7,15 +7,25 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import org.itson.bda.proyectobda_247164_246943.bancoMB.Clientes;
+import org.itson.bda.proyectobda_247164_246943.bancoMB.Domicilio;
 
 
 public class RegistroCliente extends javax.swing.JFrame {
 
+    private Acciones opcion;
+    MenuInicio menuInicio = new MenuInicio();
     /**
      * Creates new form RegistroCliente
      */
     public RegistroCliente() {
         initComponents();
+        if (opcion == Acciones.CANCELAR) {
+            btnCancelar.setText("Cancelar");
+
+        } else if (opcion == Acciones.ACEPTAR) {
+            btnAceptar.setText("Aceptar");
+            
+        }
     }
 
     /**
@@ -53,6 +63,9 @@ public class RegistroCliente extends javax.swing.JFrame {
         btnAceptar = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
+        jLabel11 = new javax.swing.JLabel();
+        txtNumeroDomicilio = new javax.swing.JTextField();
+        btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -127,11 +140,11 @@ public class RegistroCliente extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtCP, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 270, -1));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 363, 430, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 430, 10));
 
         jLabel12.setText("Correo electrónico:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 110, -1));
-        jPanel1.add(txtCorreoElectronico, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, 270, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 110, -1));
+        jPanel1.add(txtCorreoElectronico, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, 270, -1));
 
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -139,13 +152,25 @@ public class RegistroCliente extends javax.swing.JFrame {
                 btnAceptarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, -1, -1));
+        jPanel1.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 470, -1, -1));
 
         jLabel14.setText("(dd/mm/yyyy)");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 430, 10));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 465, 480));
+        jLabel11.setText("Numero de casa:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, -1));
+        jPanel1.add(txtNumeroDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 270, -1));
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 470, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 465, 520));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -178,6 +203,7 @@ public class RegistroCliente extends javax.swing.JFrame {
     String calle = txtCalle.getText();
     String colonia = txtColonia.getText();
     String codigoPostal = txtCP.getText();
+    String numeroDomicilio = txtNumeroDomicilio.getText();
     String correoElectronico = txtCorreoElectronico.getText();
 
     //Se convierte la fecha de String a tipo Date
@@ -190,24 +216,49 @@ public class RegistroCliente extends javax.swing.JFrame {
     JOptionPane.showMessageDialog(this, "Fecha inválida", "Error", JOptionPane.ERROR_MESSAGE);
     return; 
 }
+   //Se convierte el CP y numeroDomicilio de String a entero
+   Integer domicilio = null;
+   Integer codigo = null;
+   try{
+       domicilio = Integer.parseInt(codigoPostal);
+       codigo = Integer.parseInt(numeroDomicilio);
+   }catch(NumberFormatException  e){
+       e.printStackTrace();
+    JOptionPane.showMessageDialog(this, "Dirección inválida", "Error", JOptionPane.ERROR_MESSAGE);
+    return; 
+   }
+
    
     Clientes nuevoCliente = new Clientes();
+    Domicilio nuevoDomicilio = new Domicilio();
     nuevoCliente.setNombre(nombres);
     nuevoCliente.setApellidoPaterno(apellidoPaterno);
     nuevoCliente.setApellidoMaterno(apellidoMaterno);
     nuevoCliente.setFechaNacimiento(fechaNacimientoDate);
-    nuevoCliente.setCalle(calle);
-    nuevoCliente.setColonia(colonia);
-    nuevoCliente.setCodigoPostal(codigoPostal);
+    nuevoDomicilio.setCalle(calle);
+    nuevoDomicilio.setColonia(colonia);
+    nuevoDomicilio.setCP(codigo);
+    nuevoDomicilio.setNumero_domicilio(domicilio);
     nuevoCliente.setCorreo(correoElectronico);
 
+    
+    menuInicio.setVisible(true);
+    dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    menuInicio.setVisible(true);
+    dispose();
+        
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
@@ -231,5 +282,6 @@ public class RegistroCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtCorreoElectronico;
     private javax.swing.JTextField txtFechaNacimiento;
     private javax.swing.JTextField txtNombres;
+    private javax.swing.JTextField txtNumeroDomicilio;
     // End of variables declaration//GEN-END:variables
 }

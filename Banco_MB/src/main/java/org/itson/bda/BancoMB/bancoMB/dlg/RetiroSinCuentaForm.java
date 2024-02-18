@@ -23,13 +23,13 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
      String password = "cinco123";
     IConexion conexion = new Conexion(cadenaConexion, usuario, password);
 
-    private final IClientesDAO clientesDAO;
+    private final IRetiroSinCuentaDAO retiroSinCuentaDAO;
     private List<RetiroSinCuentaNuevoDTO> listaRetiros = new ArrayList<>();
 
 
-    public RetiroSinCuentaForm(IClientesDAO clientesDAO) {
+    public RetiroSinCuentaForm(IRetiroSinCuentaDAO retiroSinCuentaDAO) {
         initComponents();
-        this.clientesDAO = clientesDAO;
+        this.retiroSinCuentaDAO = retiroSinCuentaDAO;
 
         if (opcion == Acciones.CANCELAR) {
             btnCancelar.setText("Cancelar");
@@ -126,7 +126,7 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
      String concepto = txtConcepto.getText();
      String otraCifra = txtOtraCifra.getText();
-      RetiroSinCuentaDialog claveFrame = new RetiroSinCuentaDialog(clientesDAO);
+      RetiroSinCuentaDialog claveFrame = new RetiroSinCuentaDialog(retiroSinCuentaDAO);
   
      
     try {

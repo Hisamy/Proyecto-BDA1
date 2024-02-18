@@ -10,10 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.itson.bda.proyectobda_247164_246943.bancoMB.Cuentas;
 import org.itson.bda.proyectobda_247164_246943.bancoMB.Domicilio;
 import org.itson.bda.proyectobda_247164_246943.conexiones.IConexion;
-import static org.itson.bda.proyectobda_247164_246943.daos.CuentasDAO.logger;
 import org.itson.bda.proyectobda_247164_246943.dtos.DomicilioNuevoDTO;
 import org.itson.bda.proyectobda_247164_246943.excepciones.PersistenciaException;
 

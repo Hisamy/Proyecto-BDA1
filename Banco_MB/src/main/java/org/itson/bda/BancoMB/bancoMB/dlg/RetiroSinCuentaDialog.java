@@ -3,15 +3,16 @@ package org.itson.bda.BancoMB.bancoMB.dlg;
 
 import java.util.Random;
 import org.itson.bda.proyectobda_247164_246943.daos.IClientesDAO;
+import org.itson.bda.proyectobda_247164_246943.daos.IRetiroSinCuentaDAO;
 
 
 public class RetiroSinCuentaDialog extends javax.swing.JFrame {
 
-     private final IClientesDAO clientesDAO;
+     private final IRetiroSinCuentaDAO retiroSinCuentaDAO;
  
-    public RetiroSinCuentaDialog(IClientesDAO clientesDAO) {
+    public RetiroSinCuentaDialog(IRetiroSinCuentaDAO retiroSinCuentaDAO) {
         initComponents();
-        this.clientesDAO = clientesDAO;
+        this.retiroSinCuentaDAO = retiroSinCuentaDAO;
   
     }
     

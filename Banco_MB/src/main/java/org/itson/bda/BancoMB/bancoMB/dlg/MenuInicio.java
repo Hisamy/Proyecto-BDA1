@@ -1,14 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package org.itson.bda.BancoMB.bancoMB.dlg;
 
-/**
- *
- * @author Usuario
- */
+
 public class MenuInicio extends javax.swing.JFrame {
+
 
     /**
      * Creates new form MenuInicio
@@ -27,8 +22,8 @@ public class MenuInicio extends javax.swing.JFrame {
     private void initComponents() {
 
         PnlFondoAzul = new javax.swing.JPanel();
-        BtnIniciarSesion = new javax.swing.JButton();
-        BtnRegistrarse = new javax.swing.JButton();
+        btnIniciarSesion = new javax.swing.JButton();
+        btnRegistrarse = new javax.swing.JButton();
         LblBancoMB = new javax.swing.JLabel();
         PnlFondoAzulAbajo = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -40,17 +35,17 @@ public class MenuInicio extends javax.swing.JFrame {
 
         PnlFondoAzul.setBackground(new java.awt.Color(0, 102, 153));
 
-        BtnIniciarSesion.setText("Iniciar sesión");
-        BtnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+        btnIniciarSesion.setText("Iniciar sesión");
+        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnIniciarSesionActionPerformed(evt);
+                btnIniciarSesionActionPerformed(evt);
             }
         });
 
-        BtnRegistrarse.setText("Registrarse");
-        BtnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarse.setText("Registrarse");
+        btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnRegistrarseActionPerformed(evt);
+                btnRegistrarseActionPerformed(evt);
             }
         });
 
@@ -66,9 +61,9 @@ public class MenuInicio extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(LblBancoMB, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BtnIniciarSesion)
+                .addComponent(btnIniciarSesion)
                 .addGap(18, 18, 18)
-                .addComponent(BtnRegistrarse)
+                .addComponent(btnRegistrarse)
                 .addContainerGap())
         );
         PnlFondoAzulLayout.setVerticalGroup(
@@ -76,8 +71,8 @@ public class MenuInicio extends javax.swing.JFrame {
             .addGroup(PnlFondoAzulLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PnlFondoAzulLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnIniciarSesion)
-                    .addComponent(BtnRegistrarse)
+                    .addComponent(btnIniciarSesion)
+                    .addComponent(btnRegistrarse)
                     .addComponent(LblBancoMB))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
@@ -169,19 +164,22 @@ public class MenuInicio extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIniciarSesionActionPerformed
-        // TODO add your handling code here:
-        inicioSesion inicio = new inicioSesion();
-        setVisible inicio(true);
-        dispose();
+    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
+     InicioSesion inicioSesion = new InicioSesion(this, rootPaneCheckingEnabled);
+     inicioSesion.setVisible(true);
+     dispose();
+      
         
-    }//GEN-LAST:event_BtnIniciarSesionActionPerformed
+    }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
-    private void BtnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarseActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnRegistrarseActionPerformed
+    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
+    RegistroCliente registroCliente = new RegistroCliente();
+    registroCliente.setVisible(true);
+    dispose();
+    }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void BtnRetirarSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRetirarSinCuentaActionPerformed
         // TODO add your handling code here:
@@ -223,14 +221,14 @@ public class MenuInicio extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnIniciarSesion;
-    private javax.swing.JButton BtnRegistrarse;
     private javax.swing.JButton BtnRetirarSinCuenta;
     private javax.swing.JLabel LblBancoMB;
     private javax.swing.JLabel LblDecoracion1;
     private javax.swing.JLabel LblDeocracion2;
     private javax.swing.JPanel PnlFondoAzul;
     private javax.swing.JPanel PnlFondoAzulAbajo;
+    private javax.swing.JButton btnIniciarSesion;
+    private javax.swing.JButton btnRegistrarse;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
