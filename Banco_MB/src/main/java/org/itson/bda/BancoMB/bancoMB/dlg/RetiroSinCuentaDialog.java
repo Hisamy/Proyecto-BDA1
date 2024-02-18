@@ -1,5 +1,5 @@
 
-package org.itson.bda.BancoMB.bancoMB;
+package org.itson.bda.BancoMB.bancoMB.dlg;
 
 import java.util.Random;
 import org.itson.bda.proyectobda_247164_246943.daos.IClientesDAO;

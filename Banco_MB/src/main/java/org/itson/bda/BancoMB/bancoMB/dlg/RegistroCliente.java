@@ -1,5 +1,5 @@
 
-package org.itson.bda.BancoMB.bancoMB;
+package org.itson.bda.BancoMB.bancoMB.dlg;
 
 
 public class RegistroCliente extends javax.swing.JFrame {

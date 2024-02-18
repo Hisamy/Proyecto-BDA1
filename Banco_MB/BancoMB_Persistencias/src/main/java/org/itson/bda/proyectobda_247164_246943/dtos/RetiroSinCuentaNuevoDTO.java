@@ -1,15 +1,14 @@
 
 package org.itson.bda.proyectobda_247164_246943.dtos;
 
-import java.sql.Date;
+import java.sql.Date;  
 import java.time.LocalDateTime;
 
-
-public class RetiroSinCuentaNuevoDTO{
+public class RetiroSinCuentaNuevoDTO {
     private int folio;
     private int contrasenia;
     private Float monto;
-    private LocalDateTime fechaGenerada;
+    private LocalDateTime fechaGenerada;  
 
     public int getFolio() {
         return folio;
@@ -19,13 +18,12 @@ public class RetiroSinCuentaNuevoDTO{
         this.folio = folio;
     }
 
-    
-    public int getClave() {
+    public int getContrasenia() {
         return contrasenia;
     }
 
-    public void setClave(int clave) {
-        this.contrasenia = clave;
+    public void setContrasenia(int contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public LocalDateTime getFechaGenerada() {
@@ -36,13 +34,11 @@ public class RetiroSinCuentaNuevoDTO{
         this.fechaGenerada = fechaGenerada;
     }
 
-    public float getMonto() {
+    public Float getMonto() {
         return monto;
     }
 
     public void setMonto(Float monto) {
         this.monto = monto;
     }
-    
-    
 }

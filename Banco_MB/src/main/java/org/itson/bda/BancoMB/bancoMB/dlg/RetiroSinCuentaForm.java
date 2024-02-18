@@ -1,6 +1,5 @@
-package org.itson.bda.BancoMB.bancoMB;
+package org.itson.bda.BancoMB.bancoMB.dlg;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -127,7 +126,7 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
      String concepto = txtConcepto.getText();
      String otraCifra = txtOtraCifra.getText();
-      RetiroSinCuentaDialog retiroSinCuentaDialog = new RetiroSinCuentaDialog(clientesDAO);
+      RetiroSinCuentaDialog claveFrame = new RetiroSinCuentaDialog(clientesDAO);
   
      
     try {
@@ -139,18 +138,16 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
 
         agregarRetiro(retiroSinCuentaNuevo);
 
-         retiroSinCuentaDialog.setConcepto(concepto);  
+         claveFrame.setConcepto(concepto);  
         
-        retiroSinCuentaDialog.setMonto(String.valueOf(monto));
-        retiroSinCuentaDialog.setContrasenia();
-        retiroSinCuentaDialog.setFolio();
-        retiroSinCuentaNuevo.setFechaGenerada();
-
+        claveFrame.setMonto(String.valueOf(monto));
+        claveFrame.setContrasenia();
+        claveFrame.setFolio();
 
         IRetiroSinCuentaDAO retirosSinCuentaDao = new RetirosSinCuentaDAO(conexion);
         retirosSinCuentaDao.agregar(retiroSinCuentaNuevo);
         
-        retiroSinCuentaDialog.setVisible(true);
+        claveFrame.setVisible(true);
 
         
         }else {
@@ -163,7 +160,7 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
     }   catch (PersistenciaException ex) {
             Logger.getLogger(RetiroSinCuentaForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-    if (retiroSinCuentaDialog.isVisible()) {
+    if (claveFrame.isVisible()) {
             dispose();
         }
     }//GEN-LAST:event_btnAceptarActionPerformed

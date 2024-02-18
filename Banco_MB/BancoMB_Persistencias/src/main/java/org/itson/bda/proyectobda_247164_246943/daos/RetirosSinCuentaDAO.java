@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -21,8 +22,6 @@ public class RetirosSinCuentaDAO implements IRetiroSinCuentaDAO {
     final IConexion conexionBD;
     static final Logger logger = Logger.getLogger(ClientesDAO.class.getName());
 
-
-    
     public RetirosSinCuentaDAO(IConexion conexion) {
         this.conexionBD = conexion;
     }
@@ -30,7 +29,7 @@ public class RetirosSinCuentaDAO implements IRetiroSinCuentaDAO {
     @Override
     public List<RetirosSinCuenta> consultar() throws PersistenciaException {
         String sentenciaSQL = """
-                              SELECT folio, fechaHora, contrasenia,monto
+                              SELECT folio, fechaHora, contrasenia ,monto
                               FROM retiros_sin_cuenta;
                               """;
         List<RetirosSinCuenta> listaRetirosSinCuentas = new LinkedList<>();
@@ -56,23 +55,31 @@ public class RetirosSinCuentaDAO implements IRetiroSinCuentaDAO {
     @Override
     public RetirosSinCuenta agregar(RetiroSinCuentaNuevoDTO retiroSinCuentaNuevo) throws PersistenciaException {
         String sentenciaSQL = """
-                              INSERT INTO retiros_sin_cuenta(folio,fechaHora, contrasenia,monto) 
-                              VALUES(?, ?, ?, ?);
-                              """;
+                          INSERT INTO retiros_sin_cuenta(folio, fechaHora, contrasenia, monto) 
+                          VALUES (?, ?, ?, ?);
+                          """;
         try (
                 Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL, Statement.RETURN_GENERATED_KEYS);) {
             comando.setInt(1, retiroSinCuentaNuevo.getFolio());
-            comando.setDate(2, retiroSinCuentaNuevo.getFechaGenerada());
+            comando.setTimestamp(2, Timestamp.valueOf(retiroSinCuentaNuevo.getFechaGenerada()));
             comando.setFloat(3, retiroSinCuentaNuevo.getMonto());
-            comando.setInt(4, retiroSinCuentaNuevo.getClave());
+            comando.setInt(4, retiroSinCuentaNuevo.getContrasenia());
             int numeroRegistrosInsertados = comando.executeUpdate();
             logger.log(Level.INFO, "Se agregaron {0} Retiros Sin Cuenta", numeroRegistrosInsertados);
             ResultSet numeroCuentasGeneradas = comando.getGeneratedKeys();
             numeroCuentasGeneradas.next();
-            return new RetirosSinCuenta (retiroSinCuentaNuevo.getFechaGenerada(),
-                     retiroSinCuentaNuevo.getClave(),
+            
+            // Convierte LocalDateTime a Timestamp y luego a Date
+            Timestamp timestamp = Timestamp.valueOf(retiroSinCuentaNuevo.getFechaGenerada());
+            Date fechaHora = new Date(timestamp.getTime());
+
+            // Crea y devuelve un objeto RetirosSinCuenta usando la fechaHora convertida
+            return new RetirosSinCuenta(
+                    fechaHora,
+                    retiroSinCuentaNuevo.getContrasenia(),
                     retiroSinCuentaNuevo.getFolio(),
-                    retiroSinCuentaNuevo.getMonto());
+                    retiroSinCuentaNuevo.getMonto()
+            );
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "No se pudo guardar la Retiros Sin Cuenta.", e);
             throw new PersistenciaException("No se pudo guardar el Retiros Sin Cuenta.", e);
