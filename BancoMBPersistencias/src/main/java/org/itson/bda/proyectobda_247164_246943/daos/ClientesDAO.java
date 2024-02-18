@@ -58,7 +58,7 @@ public class ClientesDAO implements IClientesDAO {
     public Clientes agregar(ClienteNuevoDTO clienteNuevo) throws PersistenciaException {
         String sentenciaSQL = """
                               INSERT INTO clientes(correo,fecha_nacimeinto,nombre, apellido_paterno, apellido_materno) 
-                              VALUES(?, ?, ?,?);
+                              VALUES(?, ?, ?, ?,?);
                               """;
         try (
             Connection conexion = this.conexionBD.obtenerConexion(); 
