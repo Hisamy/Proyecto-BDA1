@@ -13,20 +13,27 @@ import org.itson.bda.proyectobda_247164_246943.daos.RetirosSinCuentaDAO;
 import org.itson.bda.proyectobda_247164_246943.dtos.RetiroSinCuentaNuevoDTO;
 import org.itson.bda.proyectobda_247164_246943.excepciones.PersistenciaException;
 
+/**
+ * Clase que representa el formulario para realizar un retiro sin cuenta en un banco.
+ */
 public class RetiroSinCuentaForm extends javax.swing.JFrame {
 
     public float monto;
     public String concepto;
     private Acciones opcion;
-     String cadenaConexion = "jdbc:mysql://localhost/banco";
-     String usuario = "root";
-     String password = "cinco123";
+    String cadenaConexion = "jdbc:mysql://localhost/banco";
+    String usuario = "root";
+    String password = "cinco123";
     IConexion conexion = new Conexion(cadenaConexion, usuario, password);
 
     private final IRetiroSinCuentaDAO retiroSinCuentaDAO;
     private List<RetiroSinCuentaNuevoDTO> listaRetiros = new ArrayList<>();
 
-
+    /**
+     * Constructor que inicializa el formulario de retiro sin cuenta.
+     *
+     * @param retiroSinCuentaDAO Objeto que proporciona métodos de acceso a la capa de persistencia.
+     */
     public RetiroSinCuentaForm(IRetiroSinCuentaDAO retiroSinCuentaDAO) {
         initComponents();
         this.retiroSinCuentaDAO = retiroSinCuentaDAO;
@@ -36,8 +43,7 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
 
         } else if (opcion == Acciones.ACEPTAR) {
             btnAceptar.setText("Aceptar");
-            btnAceptar.setText(txtConcepto.getText());
-            btnAceptar.setText(txtOtraCifra.getText());
+
         }
     }
 
@@ -115,60 +121,64 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtConceptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConceptoActionPerformed
-        txtConcepto.getText();
-    
+        
+
     }//GEN-LAST:event_txtConceptoActionPerformed
 
     private void txtOtraCifraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOtraCifraActionPerformed
-        txtOtraCifra.getText();
+       
     }//GEN-LAST:event_txtOtraCifraActionPerformed
 
+    /**
+     * Manejador de eventos para el botón de aceptar.
+     *
+     * @param evt Evento de acción.
+     */
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-     String concepto = txtConcepto.getText();
-     String otraCifra = txtOtraCifra.getText();
-      RetiroSinCuentaDialog claveFrame = new RetiroSinCuentaDialog(retiroSinCuentaDAO);
+      
+       // Crear una instancia del formulario RetiroSinCuentaDialog
+        RetiroSinCuentaDialog claveFrame = new RetiroSinCuentaDialog(retiroSinCuentaDAO);
   
-     
-    try {
-        float monto = Float.parseFloat(otraCifra);
-        
-        if (monto % 100 == 0) {
-        RetiroSinCuentaNuevoDTO retiroSinCuentaNuevo = new RetiroSinCuentaNuevoDTO();
-        retiroSinCuentaNuevo.setMonto(monto);
+        // Obtener los valores de los campos de texto
+        String concepto = txtConcepto.getText();
+        String otraCifra = txtOtraCifra.getText();
 
-        agregarRetiro(retiroSinCuentaNuevo);
+        try {
+            float monto = Float.parseFloat(otraCifra);
 
-         claveFrame.setConcepto(concepto);  
-        
-        claveFrame.setMonto(String.valueOf(monto));
-        claveFrame.setContrasenia();
-        claveFrame.setFolio();
+            if (monto % 100 == 0) {
+                RetiroSinCuentaNuevoDTO retiroSinCuentaNuevo = new RetiroSinCuentaNuevoDTO();
+                retiroSinCuentaNuevo.setMonto(monto);
 
-        IRetiroSinCuentaDAO retirosSinCuentaDao = new RetirosSinCuentaDAO(conexion);
-        retirosSinCuentaDao.agregar(retiroSinCuentaNuevo);
-        
-        claveFrame.setVisible(true);
+                agregarRetiro(retiroSinCuentaNuevo);
 
-        
-        }else {
-            // Muestra un mensaje de error si el monto no es un múltiplo de 100
-            JOptionPane.showMessageDialog(this, "El monto debe ser un múltiplo de 100", "No es múltiplo", JOptionPane.ERROR_MESSAGE);
-        }
-    } catch (NumberFormatException e) {
-        // La entrada no es un número, muestra un mensaje de error 
-        JOptionPane.showMessageDialog(this, "ERROR: La cifra ingresada no es válida.", "Cifra inválida", JOptionPane.ERROR_MESSAGE);
-    }   catch (PersistenciaException ex) {
+                claveFrame.setConcepto(concepto);
+                claveFrame.setMonto(String.valueOf(monto));
+                claveFrame.setContrasenia();
+                claveFrame.setFolio();
+
+                IRetiroSinCuentaDAO retirosSinCuentaDao = new RetirosSinCuentaDAO(conexion);
+                retirosSinCuentaDao.agregar(retiroSinCuentaNuevo);
+
+                claveFrame.setVisible(true);
+                 dispose();
+            } else {
+                // Muestra un mensaje de error si el monto no es un múltiplo de 100
+                JOptionPane.showMessageDialog(this, "El monto debe ser un múltiplo de 100", "No es múltiplo", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            // La entrada no es un número, muestra un mensaje de error 
+            JOptionPane.showMessageDialog(this, "ERROR: La cifra ingresada no es válida.", "Cifra inválida", JOptionPane.ERROR_MESSAGE);
+        } catch (PersistenciaException ex) {
             Logger.getLogger(RetiroSinCuentaForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-    if (claveFrame.isVisible()) {
-            dispose();
-        }
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
-private void agregarRetiro(RetiroSinCuentaNuevoDTO retiro) {
+    private void agregarRetiro(RetiroSinCuentaNuevoDTO retiro) {
         listaRetiros.add(retiro);
     }
 
