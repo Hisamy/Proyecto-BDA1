@@ -179,8 +179,6 @@ public class RegistroCliente extends javax.swing.JFrame {
     String colonia = txtColonia.getText();
     String codigoPostal = txtCP.getText();
     String correoElectronico = txtCorreoElectronico.getText();
-    String contrasenia = new String(txtContrasenia.getPassword());
-    String confirmarContrasenia = new String(txtConfirmarContrasenia.getPassword());
 
     //Se convierte la fecha de String a tipo Date
     Date fechaNacimientoDate = null;
