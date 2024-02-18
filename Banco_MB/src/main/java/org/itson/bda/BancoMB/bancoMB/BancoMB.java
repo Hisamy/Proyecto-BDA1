@@ -2,6 +2,7 @@
 
 package org.itson.bda.BancoMB.bancoMB;
 
+import org.itson.bda.BancoMB.bancoMB.dlg.RetiroSinCuentaForm;
 import org.itson.bda.proyectobda_247164_246943.conexiones.Conexion;
 import org.itson.bda.proyectobda_247164_246943.conexiones.IConexion;
 import org.itson.bda.proyectobda_247164_246943.daos.ClientesDAO;
@@ -19,7 +20,7 @@ public class BancoMB {
         IConexion conexion = new Conexion(cadenaConexion, usuario, password);
         IClientesDAO clientesDAO = new ClientesDAO(conexion);
         IRetiroSinCuentaDAO retirosSinCuentaDAO = new RetirosSinCuentaDAO(conexion);
-        RetiroSinCuentaForm clientesForm = new RetiroSinCuentaForm(clientesDAO);
-        clientesForm.setVisible(true);
+        RetiroSinCuentaForm retiroSinCuentaForm = new RetiroSinCuentaForm(clientesDAO);
+        retiroSinCuentaForm.setVisible(true);
     }
 }

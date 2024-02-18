@@ -9,7 +9,15 @@ public class ClienteNuevoDTO {
        private String apellidoPaterno;
        private String apellidoMaterno;
        private Date fechaNacimiento;
+       private String CorreoElectronico;
 
+    public String getCorreoElectronico() {
+        return CorreoElectronico;
+    }
+
+    public void setCorreoElectronico(String CorreoElectronico) {
+        this.CorreoElectronico = CorreoElectronico;
+    }
 
     public String getNombre() {
         return nombre;

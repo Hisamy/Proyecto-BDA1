@@ -1,5 +1,5 @@
 
-package org.itson.bda.BancoMB.bancoMB;
+package org.itson.bda.BancoMB.bancoMB.dlg;
 
 // Enumeración llamada Acciones
 public enum Acciones {
