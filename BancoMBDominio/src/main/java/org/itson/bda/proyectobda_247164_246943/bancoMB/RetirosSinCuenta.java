@@ -7,6 +7,7 @@ import java.sql.Date;
 public class RetirosSinCuenta extends Transaccion{
     private Date fechaApertura;
     private int contrasenia;
+    
 
     public RetirosSinCuenta() {
     }
