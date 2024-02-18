@@ -1,6 +1,4 @@
-
 package org.itson.bda.BancoMB.bancoMB.dlg;
-
 
 import java.sql.Date;
 import java.text.ParseException;
@@ -8,12 +6,26 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import org.itson.bda.proyectobda_247164_246943.bancoMB.Clientes;
 import org.itson.bda.proyectobda_247164_246943.bancoMB.Domicilio;
-
+import org.itson.bda.proyectobda_247164_246943.conexiones.Conexion;
+import org.itson.bda.proyectobda_247164_246943.conexiones.IConexion;
+import org.itson.bda.proyectobda_247164_246943.daos.ClientesDAO;
+import org.itson.bda.proyectobda_247164_246943.daos.DomiciliosDAO;
+import org.itson.bda.proyectobda_247164_246943.daos.IClientesDAO;
+import org.itson.bda.proyectobda_247164_246943.daos.IDomiciliosDAO;
+import org.itson.bda.proyectobda_247164_246943.dtos.ClienteNuevoDTO;
+import org.itson.bda.proyectobda_247164_246943.dtos.DomicilioNuevoDTO;
+import org.itson.bda.proyectobda_247164_246943.dtos.RetiroSinCuentaNuevoDTO;
+import org.itson.bda.proyectobda_247164_246943.excepciones.PersistenciaException;
 
 public class RegistroCliente extends javax.swing.JFrame {
 
     private Acciones opcion;
     MenuInicio menuInicio = new MenuInicio();
+    String cadenaConexion = "jdbc:mysql://localhost/banco";
+    String usuario = "root";
+    String password = "cinco123";
+    IConexion conexion = new Conexion(cadenaConexion, usuario, password);
+
     /**
      * Creates new form RegistroCliente
      */
@@ -24,7 +36,7 @@ public class RegistroCliente extends javax.swing.JFrame {
 
         } else if (opcion == Acciones.ACEPTAR) {
             btnAceptar.setText("Aceptar");
-            
+
         }
     }
 
@@ -178,7 +190,8 @@ public class RegistroCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
-        // TODO add your handling code here:
+        txtNombres.getText();
+
     }//GEN-LAST:event_txtNombresActionPerformed
 
     private void txtFechaNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaNacimientoActionPerformed
@@ -198,60 +211,80 @@ public class RegistroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCPActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-    String nombres = txtNombres.getText();
-    String apellidoPaterno = txtApellidoPaterno1.getText();
-    String apellidoMaterno = txtApellidoMaterno1.getText();
-    String fechaNacimiento = txtFechaNacimiento.getText();
-    String calle = txtCalle.getText();
-    String colonia = txtColonia.getText();
-    String codigoPostal = txtCP.getText();
-    String numeroDomicilio = txtNumeroDomicilio.getText();
-    String correoElectronico = txtCorreoElectronico.getText();
+        String nombres = txtNombres.getText();
+        String apellidoPaterno = txtApellidoPaterno1.getText();
+        String apellidoMaterno = txtApellidoMaterno1.getText();
+        String fechaNacimiento = txtFechaNacimiento.getText();
+        String calle = txtCalle.getText();
+        String colonia = txtColonia.getText();
+        String codigoPostal = txtCP.getText();
+        String numeroDomicilio = txtNumeroDomicilio.getText();
+        String correoElectronico = txtCorreoElectronico.getText();
 
-    //Se convierte la fecha de String a tipo Date
-    Date fechaNacimientoDate = null;
-   try {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
-    java.util.Date parsedDate = dateFormat.parse(fechaNacimiento);
-} catch (ParseException e) {
-    e.printStackTrace();
-    JOptionPane.showMessageDialog(this, "Fecha inválida", "Error", JOptionPane.ERROR_MESSAGE);
-    return; 
-}
-   //Se convierte el CP y numeroDomicilio de String a entero
-   Integer domicilio = null;
-   Integer codigo = null;
-   try{
-       domicilio = Integer.parseInt(codigoPostal);
-       codigo = Integer.parseInt(numeroDomicilio);
-   }catch(NumberFormatException  e){
-       e.printStackTrace();
-    JOptionPane.showMessageDialog(this, "Dirección inválida", "Error", JOptionPane.ERROR_MESSAGE);
-    return; 
-   }
+        //Se convierte la fecha de String a tipo Date
+        Date fechaNacimientoDate = null;
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+            java.util.Date parsedDate = dateFormat.parse(fechaNacimiento);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Fecha inválida", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        //Se convierte el CP y numeroDomicilio de String a entero
+        Integer domicilio = null;
+        Integer codigo = null;
+        try {
+            domicilio = Integer.parseInt(codigoPostal);
+            codigo = Integer.parseInt(numeroDomicilio);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Dirección inválida", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Validación del correo con expresiones regulares
+        String validarCorreo = "[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}";
+        if (!correoElectronico.matches(validarCorreo)) {
+            JOptionPane.showMessageDialog(this, "Correo electrónico inválido", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-   
-    Clientes nuevoCliente = new Clientes();
-    Domicilio nuevoDomicilio = new Domicilio();
-    nuevoCliente.setNombre(nombres);
-    nuevoCliente.setApellidoPaterno(apellidoPaterno);
-    nuevoCliente.setApellidoMaterno(apellidoMaterno);
-    nuevoCliente.setFechaNacimiento(fechaNacimientoDate);
-    nuevoDomicilio.setCalle(calle);
-    nuevoDomicilio.setColonia(colonia);
-    nuevoDomicilio.setCP(codigo);
-    nuevoDomicilio.setNumero_domicilio(domicilio);
-    nuevoCliente.setCorreo(correoElectronico);
+        try {
+            IClientesDAO clientesDAO = new ClientesDAO(conexion);
+            IDomiciliosDAO domicilioDAO = new DomiciliosDAO(conexion);
+            ClienteNuevoDTO nuevoCliente = new ClienteNuevoDTO();
+            DomicilioNuevoDTO nuevoDomicilio = new DomicilioNuevoDTO();
 
-    
-    menuInicio.setVisible(true);
-    dispose();
+            // Guardar la información en la base de datos utilizando las DAO
+            clientesDAO.agregar(nuevoCliente);
+            domicilioDAO.agregar(nuevoDomicilio);
+
+            nuevoCliente.setNombre(nombres);
+            nuevoCliente.setApellidoPaterno(apellidoPaterno);
+            nuevoCliente.setApellidoMaterno(apellidoMaterno);
+            nuevoCliente.setFechaNacimiento(fechaNacimientoDate);
+            nuevoDomicilio.setCalle(calle);
+            nuevoDomicilio.setColonia(colonia);
+            nuevoDomicilio.setCP(codigo);
+            nuevoDomicilio.setNumeroDomicilio(domicilio);
+            nuevoCliente.setCorreoElectronico(correoElectronico);
+            // Mostrar el menú de inicio
+            menuInicio.setVisible(true);
+            // Cerrar este formulario
+            dispose();
+        } catch (PersistenciaException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al guardar en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        menuInicio.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-    menuInicio.setVisible(true);
-    dispose();
-        
+        menuInicio.setVisible(true);
+        dispose();
+
     }//GEN-LAST:event_btnCancelarActionPerformed
 
 

@@ -57,15 +57,15 @@ public class ClientesDAO implements IClientesDAO {
     @Override
     public Clientes agregar(ClienteNuevoDTO clienteNuevo) throws PersistenciaException {
         String sentenciaSQL = """
-                              INSERT INTO clientes(fecha_nacimeinto,nombre, apellido_paterno, apellido_materno) 
+                              INSERT INTO clientes(correo,fecha_nacimeinto,nombre, apellido_paterno, apellido_materno) 
                               VALUES(?, ?, ?,?);
                               """;
         try (
             Connection conexion = this.conexionBD.obtenerConexion(); 
             PreparedStatement comando = conexion.prepareStatement(sentenciaSQL, Statement.RETURN_GENERATED_KEYS);
         ) {
-             comando.setDate(1, clienteNuevo.getFechaNacimiento());
-             comando.setString(2, clienteNuevo.getCorreoElectronico());
+            comando.setString(1, clienteNuevo.getCorreoElectronico());
+            comando.setDate(2, clienteNuevo.getFechaNacimiento());            
             comando.setString(3, clienteNuevo.getNombre());
             comando.setString(4, clienteNuevo.getApellidoPaterno());
             comando.setString(5, clienteNuevo.getApellidoMaterno());
