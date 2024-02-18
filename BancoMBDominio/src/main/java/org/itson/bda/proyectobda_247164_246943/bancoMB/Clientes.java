@@ -12,6 +12,7 @@ public class Clientes {
    
     private Integer id;
     private Date fechaNacimiento;
+    private String correo;
     private String nombre, apellidoMaterno, apellidoPaterno;
     private int edad;
     private int idDomicilio;
@@ -19,7 +20,7 @@ public class Clientes {
     public Clientes() {
     }
 
-    public Clientes(Date fechaNacimiento, String nombre, String apellidoMaterno, String apellidoPaterno) {
+    public Clientes(String correo, Date fechaNacimiento, String nombre, String apellidoMaterno, String apellidoPaterno) {
         this.fechaNacimiento = fechaNacimiento;
         this.nombre = nombre;
         this.apellidoMaterno = apellidoMaterno;
@@ -28,7 +29,7 @@ public class Clientes {
     
     
 
-    public Clientes(Integer id, Date fechaNacimiento, String nombre, String apellidoMaterno, String apellidoPaterno) {
+    public Clientes(Integer id,String correo ,Date fechaNacimiento, String nombre, String apellidoMaterno, String apellidoPaterno) {
         this.id = id;
         this.fechaNacimiento = fechaNacimiento;
         this.nombre = nombre;
@@ -91,6 +92,14 @@ public class Clientes {
 
     public void setIdDomicilio(int idDomicilio) {
         this.idDomicilio = idDomicilio;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
     
   

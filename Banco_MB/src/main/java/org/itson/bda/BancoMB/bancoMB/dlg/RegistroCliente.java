@@ -2,6 +2,13 @@
 package org.itson.bda.BancoMB.bancoMB.dlg;
 
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+import org.itson.bda.proyectobda_247164_246943.bancoMB.Clientes;
+
+
 public class RegistroCliente extends javax.swing.JFrame {
 
     /**
@@ -41,21 +48,19 @@ public class RegistroCliente extends javax.swing.JFrame {
         txtColonia = new javax.swing.JTextField();
         txtCP = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
-        jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         txtCorreoElectronico = new javax.swing.JTextField();
-        txtContrasenia = new javax.swing.JPasswordField();
-        jLabel13 = new javax.swing.JLabel();
-        txtConfirmarContrasenia = new javax.swing.JPasswordField();
         btnAceptar = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Registro");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+        jLabel1.setText("REGISTRO");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
 
         jLabel2.setText("NOMBRE COMPLETO");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
@@ -102,7 +107,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         jPanel1.add(txtApellidoMaterno1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 270, -1));
 
         jLabel7.setText("Fecha nacimiento:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 430, 10));
 
         jLabel8.setText("Calle:");
@@ -124,17 +129,9 @@ public class RegistroCliente extends javax.swing.JFrame {
         jPanel1.add(txtCP, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 270, -1));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 363, 430, 10));
 
-        jLabel11.setText("Contraseña:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, 70, -1));
-
         jLabel12.setText("Correo electrónico:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 110, -1));
         jPanel1.add(txtCorreoElectronico, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, 270, -1));
-        jPanel1.add(txtContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 270, -1));
-
-        jLabel13.setText("Confirmar contraseña:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, -1, -1));
-        jPanel1.add(txtConfirmarContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 460, 270, -1));
 
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -142,9 +139,13 @@ public class RegistroCliente extends javax.swing.JFrame {
                 btnAceptarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 520, -1, -1));
+        jPanel1.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 465, 570));
+        jLabel14.setText("(dd/mm/yyyy)");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 430, 10));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 465, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -170,7 +171,38 @@ public class RegistroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCPActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
+    String nombres = txtNombres.getText();
+    String apellidoPaterno = txtApellidoPaterno1.getText();
+    String apellidoMaterno = txtApellidoMaterno1.getText();
+    String fechaNacimiento = txtFechaNacimiento.getText();
+    String calle = txtCalle.getText();
+    String colonia = txtColonia.getText();
+    String codigoPostal = txtCP.getText();
+    String correoElectronico = txtCorreoElectronico.getText();
+    String contrasenia = new String(txtContrasenia.getPassword());
+    String confirmarContrasenia = new String(txtConfirmarContrasenia.getPassword());
+
+    //Se convierte la fecha de String a tipo Date
+    Date fechaNacimientoDate = null;
+   try {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+    java.util.Date parsedDate = dateFormat.parse(fechaNacimiento);
+} catch (ParseException e) {
+    e.printStackTrace();
+    JOptionPane.showMessageDialog(this, "Fecha inválida", "Error", JOptionPane.ERROR_MESSAGE);
+    return; 
+}
+   
+    Clientes nuevoCliente = new Clientes();
+    nuevoCliente.setNombre(nombres);
+    nuevoCliente.setApellidoPaterno(apellidoPaterno);
+    nuevoCliente.setApellidoMaterno(apellidoMaterno);
+    nuevoCliente.setFechaNacimiento(fechaNacimientoDate);
+    nuevoCliente.setCalle(calle);
+    nuevoCliente.setColonia(colonia);
+    nuevoCliente.setCodigoPostal(codigoPostal);
+    nuevoCliente.setCorreo(correoElectronico);
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
 
@@ -178,9 +210,8 @@ public class RegistroCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnAceptar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -193,13 +224,12 @@ public class RegistroCliente extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTextField txtApellidoMaterno1;
     private javax.swing.JTextField txtApellidoPaterno1;
     private javax.swing.JTextField txtCP;
     private javax.swing.JTextField txtCalle;
     private javax.swing.JTextField txtColonia;
-    private javax.swing.JPasswordField txtConfirmarContrasenia;
-    private javax.swing.JPasswordField txtContrasenia;
     private javax.swing.JTextField txtCorreoElectronico;
     private javax.swing.JTextField txtFechaNacimiento;
     private javax.swing.JTextField txtNombres;

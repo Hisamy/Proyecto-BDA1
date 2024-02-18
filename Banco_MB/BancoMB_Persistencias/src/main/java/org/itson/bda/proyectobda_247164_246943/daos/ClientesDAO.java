@@ -27,7 +27,7 @@ public class ClientesDAO implements IClientesDAO {
     @Override
     public List<Clientes> consultar() throws PersistenciaException {
         String sentenciaSQL = """
-                              SELECT id, fecha_nacimiento, nombre, apellido_paterno,apellido_materno
+                              SELECT id, correo,fecha_nacimiento, nombre, apellido_paterno,apellido_materno
                               FROM clientes;
                               """;
         List<Clientes> listaClientes = new LinkedList<>();
@@ -38,11 +38,12 @@ public class ClientesDAO implements IClientesDAO {
             ResultSet resultados = comando.executeQuery();
             while (resultados.next()) {
                 Integer id = resultados.getInt("id");
+                String correo = resultados.getString("Correo");
                 Date fechaNacimiento = resultados.getDate("fechaNacimiento");
                 String nombre = resultados.getString("nombre");
                 String apellidoPaterno = resultados.getString("apellidoPaterno");
                 String apellidoMaterno = resultados.getString("apellidoMaterno");
-                Clientes cliente = new Clientes(id,fechaNacimiento ,nombre, apellidoPaterno, apellidoMaterno);
+                Clientes cliente = new Clientes(id,correo,fechaNacimiento ,nombre, apellidoPaterno, apellidoMaterno);
                 listaClientes.add(cliente);
             }
             logger.log(Level.INFO, "Se consultaron {0} clientes", listaClientes.size());
@@ -64,14 +65,15 @@ public class ClientesDAO implements IClientesDAO {
             PreparedStatement comando = conexion.prepareStatement(sentenciaSQL, Statement.RETURN_GENERATED_KEYS);
         ) {
              comando.setDate(1, clienteNuevo.getFechaNacimiento());
-            comando.setString(2, clienteNuevo.getNombre());
-            comando.setString(3, clienteNuevo.getApellidoPaterno());
-            comando.setString(4, clienteNuevo.getApellidoMaterno());
+             comando.setString(2, clienteNuevo.getCorreoElectronico());
+            comando.setString(3, clienteNuevo.getNombre());
+            comando.setString(4, clienteNuevo.getApellidoPaterno());
+            comando.setString(5, clienteNuevo.getApellidoMaterno());
             int numeroRegistrosInsertados = comando.executeUpdate();
             logger.log(Level.INFO, "Se agregaron {0} clientes", numeroRegistrosInsertados);
             ResultSet idsGenerados = comando.getGeneratedKeys();
             idsGenerados.next();
-            return new Clientes(idsGenerados.getInt(1),clienteNuevo.getFechaNacimiento() ,clienteNuevo.getNombre(), clienteNuevo.getApellidoPaterno(), clienteNuevo.getApellidoMaterno());
+            return new Clientes(idsGenerados.getInt(1),clienteNuevo.getCorreoElectronico(),clienteNuevo.getFechaNacimiento() ,clienteNuevo.getNombre(), clienteNuevo.getApellidoPaterno(), clienteNuevo.getApellidoMaterno());
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "No se pudo guardar el cliente.", e);
             throw new PersistenciaException("No se pudo guardar el cliente.", e);
