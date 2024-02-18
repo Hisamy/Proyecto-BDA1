@@ -12,5 +12,5 @@ import org.itson.bda.proyectobda_247164_246943.excepciones.PersistenciaException
 public interface IDomiciliosDAO {
     List<Domicilio> consultar() throws PersistenciaException;
 
-    Domicilio agregar(DomicilioNuevoDTO socioNuevo) throws PersistenciaException;
+    Domicilio agregar(DomicilioNuevoDTO domicilioNuevo) throws PersistenciaException;
 }
