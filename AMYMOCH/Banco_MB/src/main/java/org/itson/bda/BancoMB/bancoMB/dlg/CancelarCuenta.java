@@ -39,6 +39,7 @@ public class CancelarCuenta extends javax.swing.JFrame {
         lblCancelarCuenta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cancelar cuenta");
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 153));
 
