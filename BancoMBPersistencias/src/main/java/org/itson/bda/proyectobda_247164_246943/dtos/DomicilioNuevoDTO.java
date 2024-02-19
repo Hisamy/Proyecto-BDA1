@@ -4,8 +4,10 @@ package org.itson.bda.proyectobda_247164_246943.dtos;
 
 public class DomicilioNuevoDTO {
     private int numeroDomicilio;
-    private String calle, colonia;
+    private String calle;
+    private String colonia;
     private int CP;
+    private String numeroCasa;
 
     public int getNumeroDomicilio() {
         return numeroDomicilio;
@@ -38,6 +40,12 @@ public class DomicilioNuevoDTO {
     public void setCP(int CP) {
         this.CP = CP;
     }
-    
-    
+
+    public String getNumeroCasa() {
+        return numeroCasa;
+    }
+
+    public void setNumeroCasa(String numeroCasa) {
+        this.numeroCasa = numeroCasa;
+    }
 }

@@ -1,6 +1,8 @@
 
 package org.itson.bda.BancoMB.bancoMB.dlg;
 
+import org.itson.bda.BancoMB.bancoMB.BancoMB;
+
 
 public class Perfil extends javax.swing.JFrame {
 
@@ -175,8 +177,7 @@ public class Perfil extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        MenuInicio menuInicio = new MenuInicio();
-        menuInicio.setVisible(true);
+        BancoMB.menuInicio.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 

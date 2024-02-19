@@ -40,6 +40,18 @@ public class Clientes {
         this.apellidoPaterno = apellidoPaterno;
   
     }
+    
+    public Clientes(Integer id,Integer clave,String correo ,Date fechaNacimiento, String nombre, String apellidoMaterno, String apellidoPaterno,
+            Integer numeroDomicilio) {
+        this.id = id;
+        this.clave = clave;
+        this.fechaNacimiento = fechaNacimiento;
+        this.nombre = nombre;
+        this.apellidoMaterno = apellidoMaterno;
+        this.apellidoPaterno = apellidoPaterno;
+        this.idDomicilio = numeroDomicilio;
+    }
+    
 
     public Integer getId() {
         return id;

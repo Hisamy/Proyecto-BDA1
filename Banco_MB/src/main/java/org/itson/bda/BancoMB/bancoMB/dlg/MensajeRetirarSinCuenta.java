@@ -1,6 +1,8 @@
 
 package org.itson.bda.BancoMB.bancoMB.dlg;
 
+import org.itson.bda.BancoMB.bancoMB.BancoMB;
+
 
 public class MensajeRetirarSinCuenta extends javax.swing.JFrame {
 
@@ -111,8 +113,7 @@ public class MensajeRetirarSinCuenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-       MenuInicio menuInicio = new MenuInicio();
-       menuInicio.setVisible(true);
+       BancoMB.menuInicio.setVisible(true);
        dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 

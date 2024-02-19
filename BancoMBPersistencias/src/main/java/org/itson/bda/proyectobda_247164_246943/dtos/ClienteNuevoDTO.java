@@ -5,12 +5,13 @@ import java.sql.Date;
 
 
 public class ClienteNuevoDTO {
-      private String nombre;
-       private String apellidoPaterno;
-       private String apellidoMaterno;
-       private Date fechaNacimiento;
-       private String CorreoElectronico;
-       private Integer clave;
+    private String nombre;
+    private String apellidoPaterno;
+    private String apellidoMaterno;
+    private Date fechaNacimiento;
+    private String CorreoElectronico;
+    private Integer clave;
+    private Integer numeroDomicilio;
 
     public Integer getClave() {
         return clave;
@@ -60,6 +61,14 @@ public class ClienteNuevoDTO {
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+
+    public Integer getNumeroDomicilio() {
+        return numeroDomicilio;
+    }
+
+    public void setNumeroDomicilio(Integer numeroDomicilio) {
+        this.numeroDomicilio = numeroDomicilio;
+    }   
        
        
 }

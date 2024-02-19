@@ -1,6 +1,7 @@
 
 package org.itson.bda.BancoMB.bancoMB.dlg;
 
+import org.itson.bda.BancoMB.bancoMB.BancoMB;
 import org.itson.bda.proyectobda_247164_246943.daos.IRetiroSinCuentaDAO;
 
 /**
@@ -124,8 +125,7 @@ public class RetirarSinCuenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        MenuInicio menuInicio = new MenuInicio ();
-        menuInicio.setVisible(true);
+        BancoMB.menuInicio.setVisible(true);
         dispose();
 
     }//GEN-LAST:event_btnCancelarActionPerformed

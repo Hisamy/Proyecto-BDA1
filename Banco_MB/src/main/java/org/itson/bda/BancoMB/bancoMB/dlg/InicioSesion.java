@@ -4,14 +4,15 @@
  */
 package org.itson.bda.BancoMB.bancoMB.dlg;
 
+import org.itson.bda.BancoMB.bancoMB.BancoMB;
+
 /**
  *
  * @author Usuario
  */
 public class InicioSesion extends javax.swing.JFrame {
     
-    private Acciones opcion;
-    MenuInicio menuInicio = new MenuInicio();
+    private Acciones opcion;    
 
     /**
      * Creates new form IniciarSesion
@@ -161,7 +162,7 @@ public class InicioSesion extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
-        menuInicio.setVisible(true);
+        BancoMB.menuInicio.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 

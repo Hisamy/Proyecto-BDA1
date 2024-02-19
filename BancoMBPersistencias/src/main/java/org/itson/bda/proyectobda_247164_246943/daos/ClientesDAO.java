@@ -85,8 +85,8 @@ public class ClientesDAO implements IClientesDAO {
     @Override
     public Clientes agregar(ClienteNuevoDTO clienteNuevo) throws PersistenciaException {
         String sentenciaSQL = """
-                              INSERT INTO clientes(correo,clave,fecha_nacimeinto,nombre,apellido_paterno, apellido_materno) 
-                              VALUES(?, ?, ?,?,?);
+                              INSERT INTO clientes(correo,clave,fecha_nacimiento,nombres,apellido_paterno, apellido_materno,numero_domicilio) 
+                              VALUES(?,?,?,?,?,?,?);
                               """;
         try (
             Connection conexion = this.conexionBD.obtenerConexion(); 
@@ -99,11 +99,21 @@ public class ClientesDAO implements IClientesDAO {
             comando.setString(4, clienteNuevo.getNombre());
             comando.setString(5, clienteNuevo.getApellidoPaterno());
             comando.setString(6, clienteNuevo.getApellidoMaterno());
+            comando.setInt(7, clienteNuevo.getNumeroDomicilio());
             int numeroRegistrosInsertados = comando.executeUpdate();
             logger.log(Level.INFO, "Se agregaron {0} clientes", numeroRegistrosInsertados);
             ResultSet idsGenerados = comando.getGeneratedKeys();
             idsGenerados.next();
-            return new Clientes(idsGenerados.getInt(1),clienteNuevo.getClave(),clienteNuevo.getCorreoElectronico(),clienteNuevo.getFechaNacimiento() ,clienteNuevo.getNombre(), clienteNuevo.getApellidoPaterno(), clienteNuevo.getApellidoMaterno());
+            return new Clientes(
+                    idsGenerados.getInt(1),
+                    clienteNuevo.getClave(),
+                    clienteNuevo.getCorreoElectronico(),
+                    clienteNuevo.getFechaNacimiento(),
+                    clienteNuevo.getNombre(),
+                    clienteNuevo.getApellidoPaterno(),
+                    clienteNuevo.getApellidoMaterno(),
+                    clienteNuevo.getNumeroDomicilio()
+            );
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "No se pudo guardar el cliente.", e);
             throw new PersistenciaException("No se pudo guardar el cliente.", e);
