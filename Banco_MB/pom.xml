@@ -30,7 +30,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>BancoMB_Persistencias</artifactId>
+            <artifactId>BancoMBPersistencias</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

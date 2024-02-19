@@ -8,7 +8,6 @@ public class CuentaNuevaDTO {
     private Integer numeroCuenta;
     private Date fechaApertura;
     private float saldo;
-    private int clave;
 
     public Integer getNumeroCuenta() {
         return numeroCuenta;
@@ -34,13 +33,7 @@ public class CuentaNuevaDTO {
         this.saldo = saldo;
     }
 
-    public int getClave() {
-        return clave;
-    }
-
-    public void setClave(int clave) {
-        this.clave = clave;
-    }
+  
     
     
 }

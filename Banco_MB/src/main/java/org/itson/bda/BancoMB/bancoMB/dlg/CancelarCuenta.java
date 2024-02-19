@@ -136,8 +136,8 @@ public class CancelarCuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarCuentaActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        Perfil perfil = new Perfil();
-        perfil.setVisible(true);
+        SesionIniciada sesionIniciada = new SesionIniciada();
+        sesionIniciada.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 

@@ -165,7 +165,7 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
         retiroSinCuentaDAO.agregar(retiroSinCuentaNuevo);
         
         claveFrame.setVisible(true);
-
+         dispose();
         
         }else {
             // Muestra un mensaje de error si el monto no es un múltiplo de 100
@@ -177,12 +177,14 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
     }   catch (PersistenciaException ex) {
             Logger.getLogger(RetiroSinCuentaForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-    if (claveFrame.isVisible()) {
-            dispose();
-        }
+    
+           
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        SesionIniciada sesionIniciada = new SesionIniciada();
+        sesionIniciada.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 private void agregarRetiro(RetiroSinCuentaNuevoDTO retiro) {

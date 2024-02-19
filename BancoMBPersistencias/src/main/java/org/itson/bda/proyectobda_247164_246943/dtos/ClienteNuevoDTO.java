@@ -10,6 +10,16 @@ public class ClienteNuevoDTO {
        private String apellidoMaterno;
        private Date fechaNacimiento;
        private String CorreoElectronico;
+       private Integer clave;
+
+    public Integer getClave() {
+        return clave;
+    }
+
+    public void setClave(Integer clave) {
+        this.clave = clave;
+    }
+           
 
     public String getCorreoElectronico() {
         return CorreoElectronico;

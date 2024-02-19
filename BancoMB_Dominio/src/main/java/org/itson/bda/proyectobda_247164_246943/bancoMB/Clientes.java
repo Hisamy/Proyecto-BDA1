@@ -13,6 +13,7 @@ public class Clientes {
     private Integer id;
     private Date fechaNacimiento;
     private String correo;
+    private Integer clave;
     private String nombre, apellidoMaterno, apellidoPaterno;
     private int edad;
     private int idDomicilio;
@@ -20,7 +21,8 @@ public class Clientes {
     public Clientes() {
     }
 
-    public Clientes(String correo, Date fechaNacimiento, String nombre, String apellidoMaterno, String apellidoPaterno) {
+    public Clientes(Integer clave,String correo, Date fechaNacimiento, String nombre, String apellidoMaterno, String apellidoPaterno) {
+       this.clave = clave;
         this.fechaNacimiento = fechaNacimiento;
         this.nombre = nombre;
         this.apellidoMaterno = apellidoMaterno;
@@ -29,8 +31,9 @@ public class Clientes {
     
     
 
-    public Clientes(Integer id,String correo ,Date fechaNacimiento, String nombre, String apellidoMaterno, String apellidoPaterno) {
+    public Clientes(Integer id,Integer clave,String correo ,Date fechaNacimiento, String nombre, String apellidoMaterno, String apellidoPaterno) {
         this.id = id;
+        this.clave = clave;
         this.fechaNacimiento = fechaNacimiento;
         this.nombre = nombre;
         this.apellidoMaterno = apellidoMaterno;
@@ -100,6 +103,14 @@ public class Clientes {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public Integer getClave() {
+        return clave;
+    }
+
+    public void setClave(Integer clave) {
+        this.clave = clave;
     }
     
   

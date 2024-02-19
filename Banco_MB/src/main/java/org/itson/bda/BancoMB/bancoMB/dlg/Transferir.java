@@ -13,7 +13,6 @@ public class Transferir extends javax.swing.JFrame {
 
     private ITransferenciaDAO transferenciaDAO;
 
-    
     public Transferir(TransferenciaDAO transferenciaDAO) {
         initComponents();
         this.transferenciaDAO = transferenciaDAO;
@@ -22,7 +21,6 @@ public class Transferir extends javax.swing.JFrame {
     public Transferir() throws HeadlessException {
         initComponents();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -166,56 +164,44 @@ public class Transferir extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        Integer cuentaDeOrigen = Integer.parseInt(txtCuentaOrigen.getText());
-        double importe = Double.parseDouble(txtImorte.getText());
-        Integer destinatario = Integer.parseInt(txtDestinatario.getText());
-        String motivoDePago = txtMotivoDePago.getText();
-       
         try {
-           destinatario = Integer.parseInt(txtDestinatario.getText());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Ingrese un valor numérico válido para el orígen.", "Error de formato", JOptionPane.ERROR_MESSAGE);
-            return; 
-        }
-         try {
-           cuentaDeOrigen = Integer.parseInt(txtCuentaOrigen.getText());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Ingrese un valor numérico válido para el destinatario.", "Error de formato", JOptionPane.ERROR_MESSAGE);
-            return; 
-        }
-        try {
-            importe = Double.parseDouble(txtImorte.getText());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Ingrese un valor numérico válido para el importe.", "Error de formato", JOptionPane.ERROR_MESSAGE);
-            return; 
-        }
-        
+            String cuentaOrigenStr = txtCuentaOrigen.getText().trim();
+            String destinatarioStr = txtDestinatario.getText().trim();
+            String importeStr = txtImorte.getText().trim();
+            String motivoDePago = txtMotivoDePago.getText().trim();
 
-        if ( importe <= 0.0) {
-            JOptionPane.showMessageDialog(this, "Ingrese un importe válido.", "Importe inválido", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+            if (cuentaOrigenStr.isBlank() || destinatarioStr.isBlank() || importeStr.isBlank()) {
+                JOptionPane.showMessageDialog(this, "Complete todos los campos obligatorios.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
 
-        TransferenciaNuevaDTO transferenciaNueva = new TransferenciaNuevaDTO();
-        transferenciaNueva.setNumeroCuentaOrigen(cuentaDeOrigen);
-        transferenciaNueva.setNumeroCuentaReceptor(destinatario);
-        transferenciaNueva.setMonto(importe);
-        transferenciaNueva.setMotivoPago(motivoDePago);
+            Integer cuentaDeOrigen = Integer.parseInt(cuentaOrigenStr);
+            Integer destinatario = Integer.parseInt(destinatarioStr);
+            Double importe = Double.parseDouble(importeStr);
 
-        try {
+            if (cuentaDeOrigen <= 0 || destinatario <= 0 || importe <= 0) {
+                JOptionPane.showMessageDialog(this, "Ingrese valores numéricos válidos y mayores que cero para el origen, destinatario e importe.", "Valores inválidos", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            TransferenciaNuevaDTO transferenciaNueva = new TransferenciaNuevaDTO();
+            transferenciaNueva.setNumeroCuentaOrigen(cuentaDeOrigen);
+            transferenciaNueva.setNumeroCuentaReceptor(destinatario);
+            transferenciaNueva.setMonto(importe);
+            transferenciaNueva.setMotivoPago(motivoDePago);
+
             transferenciaDAO.agregar(transferenciaNueva);
 
             TransferirSegundaPantalla transferirSegundaPantalla = new TransferirSegundaPantalla();
             transferirSegundaPantalla.setVisible(true);
             dispose();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingrese valores numéricos válidos para el origen, destinatario e importe.", "Error de formato", JOptionPane.ERROR_MESSAGE);
         } catch (PersistenciaException ex) {
             Logger.getLogger(Transferir.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Error al agregar la transferencia a la base de datos.", "Error de persistencia", JOptionPane.ERROR_MESSAGE);
         }
 
-        TransferirSegundaPantalla transferirSegundaPantalla = new TransferirSegundaPantalla();
-        transferirSegundaPantalla.setVisible(true);
-        dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void txtDestinatarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDestinatarioActionPerformed

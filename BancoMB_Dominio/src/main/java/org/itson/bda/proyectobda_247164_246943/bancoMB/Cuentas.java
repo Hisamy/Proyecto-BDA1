@@ -12,23 +12,20 @@ public class Cuentas {
     private Integer numeroCuenta;
     private Date fechaApertura;
     private float saldo;
-    private int clave;
 
     public Cuentas() {
     }
 
     
-    public Cuentas(Integer numeroCuenta, Date fechaApertura, float saldo, int clave) {
+    public Cuentas(Integer numeroCuenta, Date fechaApertura, float saldo) {
         this.numeroCuenta = numeroCuenta;
         this.fechaApertura = fechaApertura;
         this.saldo = saldo;
-        this.clave = clave;
     }
 
-    public Cuentas(Date fechaApertura, float saldo, int clave) {
+    public Cuentas(Date fechaApertura, float saldo) {
         this.fechaApertura = fechaApertura;
         this.saldo = saldo;
-        this.clave = clave;
     }
 
     public Integer getNumeroCuenta() {
@@ -55,13 +52,5 @@ public class Cuentas {
         this.saldo = saldo;
     }
 
-    public int getClave() {
-        return clave;
-    }
-
-    public void setClave(int clave) {
-        this.clave = clave;
-    }
-    
     
 }
