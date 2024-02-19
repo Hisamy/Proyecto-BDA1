@@ -30,6 +30,7 @@ public class Perfil extends javax.swing.JFrame {
         lblSaldoDisponible = new javax.swing.JLabel();
         lblFechaDeApertura = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
+        lblEstado = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
         btnHistorial = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
@@ -50,6 +51,10 @@ public class Perfil extends javax.swing.JFrame {
         lblFechaDeApertura.setForeground(new java.awt.Color(153, 153, 153));
         lblFechaDeApertura.setText("FECHA DE APERTURA");
 
+        lblEstado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblEstado.setForeground(new java.awt.Color(153, 153, 153));
+        lblEstado.setText("ESTADO");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -62,7 +67,9 @@ public class Perfil extends javax.swing.JFrame {
                 .addComponent(lblSaldoDisponible)
                 .addGap(18, 18, 18)
                 .addComponent(lblFechaDeApertura)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblEstado)
+                .addContainerGap(18, Short.MAX_VALUE))
             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel2Layout.setVerticalGroup(
@@ -72,7 +79,8 @@ public class Perfil extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCuentasEnPesos)
                     .addComponent(lblSaldoDisponible)
-                    .addComponent(lblFechaDeApertura))
+                    .addComponent(lblFechaDeApertura)
+                    .addComponent(lblEstado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
@@ -110,20 +118,19 @@ public class Perfil extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(btnRegresar)
-                        .addGap(32, 32, 32)
-                        .addComponent(btnCerrarSesion)
-                        .addGap(29, 29, 29)
-                        .addComponent(btnHistorial))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblNombre)))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addGap(122, 122, 122)
+                .addComponent(btnRegresar)
+                .addGap(32, 32, 32)
+                .addComponent(btnCerrarSesion)
+                .addGap(29, 29, 29)
+                .addComponent(btnHistorial)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblNombre)
+                .addGap(22, 22, 22))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +142,7 @@ public class Perfil extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
+                        .addGap(48, 48, 48)
                         .addComponent(lblNombre)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -164,7 +171,7 @@ public class Perfil extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -201,6 +208,7 @@ public class Perfil extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblCuentasEnPesos;
+    private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblFechaDeApertura;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblSaldoDisponible;

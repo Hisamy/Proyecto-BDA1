@@ -62,12 +62,30 @@ public class CancelarCuenta extends javax.swing.JFrame {
         lblNumeroCuenta.setForeground(new java.awt.Color(255, 255, 255));
         lblNumeroCuenta.setText("Número de cuenta");
 
+        txtNumeroCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumeroCuentaActionPerformed(evt);
+            }
+        });
+
         lblClave.setForeground(new java.awt.Color(255, 255, 255));
         lblClave.setText("Clave");
+
+        txtClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClaveActionPerformed(evt);
+            }
+        });
 
         lblPregunta.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         lblPregunta.setForeground(new java.awt.Color(255, 255, 255));
         lblPregunta.setText("¿Por qué desea cancelar su cuenta?");
+
+        txtRespuesta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRespuestaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -155,6 +173,21 @@ public class CancelarCuenta extends javax.swing.JFrame {
         sesionIniciada.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void txtNumeroCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroCuentaActionPerformed
+        // TODO add your handling code here:
+        txtNumeroCuenta.getText();
+    }//GEN-LAST:event_txtNumeroCuentaActionPerformed
+       
+    private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
+        // TODO add your handling code here:
+        txtClave.getText();
+    }//GEN-LAST:event_txtClaveActionPerformed
+
+    private void txtRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRespuestaActionPerformed
+        // TODO add your handling code here:
+        txtRespuesta.getText();
+    }//GEN-LAST:event_txtRespuestaActionPerformed
 
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
