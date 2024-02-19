@@ -66,7 +66,7 @@ public class ClienteNuevoDTO {
         return numeroDomicilio;
     }
 
-    public void setNumeroDomicilio(Integer numeroDomicilio) {
+    public void setNumeroDomicilio(int numeroDomicilio) {
         this.numeroDomicilio = numeroDomicilio;
     }   
        
