@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.itson.bda.proyectobda_247164_246943.conexiones.Conexion;
 import org.itson.bda.proyectobda_247164_246943.conexiones.IConexion;
-import org.itson.bda.proyectobda_247164_246943.daos.IClientesDAO;
 import org.itson.bda.proyectobda_247164_246943.daos.IRetiroSinCuentaDAO;
 import org.itson.bda.proyectobda_247164_246943.daos.RetirosSinCuentaDAO;
 import org.itson.bda.proyectobda_247164_246943.dtos.RetiroSinCuentaNuevoDTO;
@@ -23,13 +22,14 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
      String password = "cinco123";
     IConexion conexion = new Conexion(cadenaConexion, usuario, password);
 
-    private final IClientesDAO clientesDAO;
+    private  IRetiroSinCuentaDAO retiroSinCuentaDAO;
     private List<RetiroSinCuentaNuevoDTO> listaRetiros = new ArrayList<>();
 
+    
 
-    public RetiroSinCuentaForm(IClientesDAO clientesDAO) {
+    public RetiroSinCuentaForm(IRetiroSinCuentaDAO retiroSinCuentaDAO) {
         initComponents();
-        this.clientesDAO = clientesDAO;
+        this.retiroSinCuentaDAO = retiroSinCuentaDAO;
 
         if (opcion == Acciones.CANCELAR) {
             btnCancelar.setText("Cancelar");
@@ -39,6 +39,9 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
             btnAceptar.setText(txtConcepto.getText());
             btnAceptar.setText(txtOtraCifra.getText());
         }
+    }
+    public RetiroSinCuentaForm(){
+        initComponents();
     }
 
     /**
@@ -59,32 +62,37 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Retiro sin cuenta");
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(0, 102, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        LblImporte.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        LblImporte.setForeground(new java.awt.Color(255, 255, 255));
         LblImporte.setText("Importe");
-        jPanel1.add(LblImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
+        jPanel1.add(LblImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
 
         txtConcepto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtConceptoActionPerformed(evt);
             }
         });
-        jPanel1.add(txtConcepto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 260, -1));
+        jPanel1.add(txtConcepto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 260, 20));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(204, 204, 255));
         jLabel1.setText("Solo múltiplos de 100");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
         txtOtraCifra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtOtraCifraActionPerformed(evt);
             }
         });
-        jPanel1.add(txtOtraCifra, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 260, -1));
+        jPanel1.add(txtOtraCifra, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 260, -1));
 
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -102,13 +110,25 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
         });
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Cifra:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Concepto(opcional):");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, -1, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 33, 400, 10));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
         setLocationRelativeTo(null);
@@ -126,7 +146,7 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
      String concepto = txtConcepto.getText();
      String otraCifra = txtOtraCifra.getText();
-      RetiroSinCuentaDialog claveFrame = new RetiroSinCuentaDialog(clientesDAO);
+     RetiroSinCuentaDialog claveFrame = new RetiroSinCuentaDialog(retiroSinCuentaDAO);
   
      
     try {
@@ -141,14 +161,11 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
          claveFrame.setConcepto(concepto);  
         
         claveFrame.setMonto(String.valueOf(monto));
-        claveFrame.setContrasenia();
-        claveFrame.setFolio();
 
-        IRetiroSinCuentaDAO retirosSinCuentaDao = new RetirosSinCuentaDAO(conexion);
-        retirosSinCuentaDao.agregar(retiroSinCuentaNuevo);
+        retiroSinCuentaDAO.agregar(retiroSinCuentaNuevo);
         
         claveFrame.setVisible(true);
-
+         dispose();
         
         }else {
             // Muestra un mensaje de error si el monto no es un múltiplo de 100
@@ -160,12 +177,14 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
     }   catch (PersistenciaException ex) {
             Logger.getLogger(RetiroSinCuentaForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-    if (claveFrame.isVisible()) {
-            dispose();
-        }
+    
+           
+        
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        SesionIniciada sesionIniciada = new SesionIniciada();
+        sesionIniciada.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 private void agregarRetiro(RetiroSinCuentaNuevoDTO retiro) {
@@ -181,6 +200,7 @@ private void agregarRetiro(RetiroSinCuentaNuevoDTO retiro) {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField txtConcepto;
     private javax.swing.JTextField txtOtraCifra;
     // End of variables declaration//GEN-END:variables

@@ -3,15 +3,16 @@ package org.itson.bda.BancoMB.bancoMB.dlg;
 
 import java.util.Random;
 import org.itson.bda.proyectobda_247164_246943.daos.IClientesDAO;
+import org.itson.bda.proyectobda_247164_246943.daos.IRetiroSinCuentaDAO;
 
 
 public class RetiroSinCuentaDialog extends javax.swing.JFrame {
 
-     private final IClientesDAO clientesDAO;
+     private final IRetiroSinCuentaDAO retiroSinCuentaDAO;
  
-    public RetiroSinCuentaDialog(IClientesDAO clientesDAO) {
+    public RetiroSinCuentaDialog(IRetiroSinCuentaDAO retiroSinCuentaDAO) {
         initComponents();
-        this.clientesDAO = clientesDAO;
+        this.retiroSinCuentaDAO = retiroSinCuentaDAO;
   
     }
     
@@ -83,39 +84,60 @@ public class RetiroSinCuentaDialog extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(0, 102, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("RETIRO DISPONIBLE");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
 
+        jLabel2.setForeground(new java.awt.Color(204, 204, 255));
         jLabel2.setText("Vence en 10 minutos");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 53, 380, 10));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Monto:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Contraseña:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Folio:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, -1, -1));
 
+        lblConcepto2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblConcepto2.setForeground(new java.awt.Color(255, 255, 255));
         lblConcepto2.setText("Concepto:");
         jPanel1.add(lblConcepto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, -1));
 
+        lblMonto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblMonto.setForeground(new java.awt.Color(255, 255, 255));
         lblMonto.setText("Monto");
         jPanel1.add(lblMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 110, -1));
 
+        lblConcepto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblConcepto.setForeground(new java.awt.Color(255, 255, 255));
         lblConcepto.setText("Concepto");
         jPanel1.add(lblConcepto, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 120, -1));
 
+        lblContrasenia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblContrasenia.setForeground(new java.awt.Color(255, 255, 255));
         lblContrasenia.setText("Contrasenia");
         jPanel1.add(lblContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 120, -1));
 
+        lblFolio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblFolio.setForeground(new java.awt.Color(255, 255, 255));
         lblFolio.setText("Folio");
         jPanel1.add(lblFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 120, -1));
 
+        btnSalir.setForeground(new java.awt.Color(0, 0, 102));
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
