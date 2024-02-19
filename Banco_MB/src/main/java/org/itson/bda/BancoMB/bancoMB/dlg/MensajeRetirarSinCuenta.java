@@ -30,6 +30,7 @@ public class MensajeRetirarSinCuenta extends javax.swing.JFrame {
         lblFolio1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Retiro sin cuenta realizado");
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 153));
 

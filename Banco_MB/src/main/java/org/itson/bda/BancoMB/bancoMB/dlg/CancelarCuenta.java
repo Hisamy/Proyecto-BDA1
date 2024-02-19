@@ -3,10 +3,20 @@ package org.itson.bda.BancoMB.bancoMB.dlg;
 
 
 public class CancelarCuenta extends javax.swing.JFrame {
-
+    
+    private Acciones opcion;
 
     public CancelarCuenta() {
         initComponents();
+            if (opcion == Acciones.CANCELAR) {
+            btnRegresar.setText("Regresar");
+
+        } else if (opcion == Acciones.ACEPTAR) {
+            btnCancelarCuenta.setText("Cancelar cuenta");
+            btnCancelarCuenta.setText(txtNumeroCuenta.getText());
+            btnCancelarCuenta.setText(txtClave.getText());
+            btnCancelarCuenta.setText(txtRespuesta.getText());
+        }
     }
 
     /**
@@ -31,6 +41,7 @@ public class CancelarCuenta extends javax.swing.JFrame {
         lblCancelarCuenta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cancelar cuenta");
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 153));
 
@@ -132,7 +143,11 @@ public class CancelarCuenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCuentaActionPerformed
-       
+        String numeroCuenta = txtNumeroCuenta.getText();
+        String clave = txtClave.getText();
+        String respuesta = txtRespuesta.getText();
+        //RetiroSinCuentaDialog claveFrame = new RetiroSinCuentaDialog(retiroSinCuentaDAO);
+        
     }//GEN-LAST:event_btnCancelarCuentaActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed

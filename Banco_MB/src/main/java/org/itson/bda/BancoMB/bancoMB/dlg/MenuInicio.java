@@ -38,6 +38,7 @@ public class MenuInicio extends javax.swing.JFrame {
         lblDeocracion2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menú de inicio");
 
         PnlFondoAzul.setBackground(new java.awt.Color(0, 102, 153));
 
