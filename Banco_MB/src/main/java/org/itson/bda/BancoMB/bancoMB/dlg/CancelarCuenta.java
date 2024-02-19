@@ -4,9 +4,7 @@ package org.itson.bda.BancoMB.bancoMB.dlg;
 
 public class CancelarCuenta extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CancelarCuenta
-     */
+
     public CancelarCuenta() {
         initComponents();
     }
@@ -51,7 +49,7 @@ public class CancelarCuenta extends javax.swing.JFrame {
         });
 
         lblNumeroCuenta.setForeground(new java.awt.Color(255, 255, 255));
-        lblNumeroCuenta.setText("Número de cuentas");
+        lblNumeroCuenta.setText("Número de cuenta");
 
         lblClave.setForeground(new java.awt.Color(255, 255, 255));
         lblClave.setText("Clave");

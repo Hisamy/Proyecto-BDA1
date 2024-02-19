@@ -1,8 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package org.itson.bda.BancoMB.bancoMB.dlg;
+
+import org.itson.bda.proyectobda_247164_246943.daos.IRetiroSinCuentaDAO;
 
 /**
  *
@@ -10,9 +9,8 @@ package org.itson.bda.BancoMB.bancoMB.dlg;
  */
 public class RetirarSinCuenta extends javax.swing.JFrame {
 
-    /**
-     * Creates new form RetirarSinCuenta
-     */
+
+
     public RetirarSinCuenta() {
         initComponents();
     }
@@ -122,6 +120,7 @@ public class RetirarSinCuenta extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

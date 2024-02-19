@@ -70,6 +70,11 @@ public class MensajeTransferir extends javax.swing.JFrame {
         );
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         lblMotivoDePago.setText("Motivo de pago");
 
@@ -106,7 +111,14 @@ public class MensajeTransferir extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        SesionIniciada sesionIniciada = new SesionIniciada ();
+        sesionIniciada.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
    
 

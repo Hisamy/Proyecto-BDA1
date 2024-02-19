@@ -31,6 +31,7 @@ public class Transferir extends javax.swing.JFrame {
         txtMotivoDePago = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Transferencia Destinatario");
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 153));
 
@@ -59,8 +60,18 @@ public class Transferir extends javax.swing.JFrame {
         lblDestinatario.setText("DESTINATARIO");
 
         btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("IMPORTE");
@@ -121,7 +132,20 @@ public class Transferir extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        SesionIniciada sesionIniciada = new SesionIniciada();
+        sesionIniciada.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        TransferirSegundaPantalla transferirSegundaPantalla = new TransferirSegundaPantalla();
+        transferirSegundaPantalla.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

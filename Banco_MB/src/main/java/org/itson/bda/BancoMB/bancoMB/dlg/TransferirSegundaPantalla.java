@@ -27,6 +27,7 @@ public class TransferirSegundaPantalla extends javax.swing.JFrame {
         lblTotalOperacion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Transferencia Confirmación");
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 153));
 
@@ -67,6 +68,11 @@ public class TransferirSegundaPantalla extends javax.swing.JFrame {
         );
 
         btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         lblTotalOperacion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblTotalOperacion.setForeground(new java.awt.Color(0, 102, 153));
@@ -98,7 +104,14 @@ public class TransferirSegundaPantalla extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        MensajeTransferir mensajeTransferir = new MensajeTransferir();
+        mensajeTransferir.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
   
 

@@ -127,7 +127,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="N&#xfa;mero de cuentas"/>
+            <Property name="text" type="java.lang.String" value="N&#xfa;mero de cuenta"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNumeroCuenta">
