@@ -1,5 +1,6 @@
 package org.itson.bda.BancoMB.bancoMB.dlg;
 
+import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,9 +24,10 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
      String password = "cinco123";
     IConexion conexion = new Conexion(cadenaConexion, usuario, password);
 
-    private final IRetiroSinCuentaDAO retiroSinCuentaDAO;
+    private  IRetiroSinCuentaDAO retiroSinCuentaDAO;
     private List<RetiroSinCuentaNuevoDTO> listaRetiros = new ArrayList<>();
 
+    
 
     public RetiroSinCuentaForm(IRetiroSinCuentaDAO retiroSinCuentaDAO) {
         initComponents();
@@ -39,6 +41,8 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
             btnAceptar.setText(txtConcepto.getText());
             btnAceptar.setText(txtOtraCifra.getText());
         }
+    }
+    public RetiroSinCuentaForm() throws HeadlessException {
     }
 
     /**

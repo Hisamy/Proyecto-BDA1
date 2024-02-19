@@ -1,18 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package org.itson.bda.BancoMB.bancoMB.dlg;
 
-/**
- *
- * @author Usuario
- */
+
 public class SesionIniciada extends javax.swing.JFrame {
 
-    /**
-     * Creates new form SesionIniciada
-     */
+  
     public SesionIniciada() {
         initComponents();
     }
@@ -43,6 +35,11 @@ public class SesionIniciada extends javax.swing.JFrame {
         btnTransferencias.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnTransferencias.setForeground(new java.awt.Color(255, 255, 255));
         btnTransferencias.setText("Transferencias");
+        btnTransferencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransferenciasActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setForeground(new java.awt.Color(204, 204, 255));
@@ -79,16 +76,31 @@ public class SesionIniciada extends javax.swing.JFrame {
         btnRetiroSinCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnRetiroSinCuenta.setForeground(new java.awt.Color(255, 255, 255));
         btnRetiroSinCuenta.setText("Retiro sin cuenta");
+        btnRetiroSinCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetiroSinCuentaActionPerformed(evt);
+            }
+        });
 
         btnPerfil.setBackground(new java.awt.Color(0, 102, 153));
         btnPerfil.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnPerfil.setForeground(new java.awt.Color(255, 255, 255));
         btnPerfil.setText("Perfil");
+        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerfilActionPerformed(evt);
+            }
+        });
 
         btnCancelarCuenta.setBackground(new java.awt.Color(0, 102, 153));
         btnCancelarCuenta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCancelarCuenta.setForeground(new java.awt.Color(255, 255, 255));
         btnCancelarCuenta.setText("Cancelar cuenta");
+        btnCancelarCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarCuentaActionPerformed(evt);
+            }
+        });
 
         lblNombreCliente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNombreCliente.setForeground(new java.awt.Color(255, 255, 255));
@@ -144,40 +156,31 @@ public class SesionIniciada extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SesionIniciada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SesionIniciada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SesionIniciada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SesionIniciada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnTransferenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferenciasActionPerformed
+        Transferir transferir = new Transferir ();
+        transferir.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnTransferenciasActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SesionIniciada().setVisible(true);
-            }
-        });
-    }
+    private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
+        RetiroSinCuentaForm retiroSinCuentaForm = new RetiroSinCuentaForm();
+        retiroSinCuentaForm.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
+
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+        Perfil perfil = new Perfil();
+        perfil.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnPerfilActionPerformed
+
+    private void btnCancelarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCuentaActionPerformed
+        CancelarCuenta cancelarCuenta = new CancelarCuenta();
+        cancelarCuenta.setVisible(true);
+        dispose();
+        
+    }//GEN-LAST:event_btnCancelarCuentaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarCuenta;

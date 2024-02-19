@@ -189,8 +189,10 @@ public class MenuInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void btnRetirarSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarSinCuentaActionPerformed
-        // TODO add your handling code here:
-
+        RetirarSinCuenta retirarSinCuenta = new RetirarSinCuenta();
+        retirarSinCuenta.setVisible(true);
+        dispose();
+        
     }//GEN-LAST:event_btnRetirarSinCuentaActionPerformed
 
 //    /**
