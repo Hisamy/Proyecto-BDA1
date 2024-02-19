@@ -6,22 +6,25 @@ public class Domicilio {
     private int numeroDomicilio;
     private String calle, colonia;
     private int CP;
+    private int numeroCasa;
 
     public Domicilio() {
     }
 
     
-    public Domicilio(int numeroDomicilio, String calle, String colonia, int CP) {
+    public Domicilio(int numeroDomicilio, String calle, String colonia, int CP, int numeroCasa) {
         this.numeroDomicilio = numeroDomicilio;
         this.calle = calle;
         this.colonia = colonia;
         this.CP = CP;
+        this.numeroCasa = numeroCasa;
     }
 
-    public Domicilio(String calle, String colonia, int CP) {
+    public Domicilio(String calle, String colonia, int CP, int numeroCasa) {
         this.calle = calle;
         this.colonia = colonia;
         this.CP = CP;
+        this.numeroCasa = numeroCasa;
     }
 
     public int getNumero_domicilio() {
@@ -54,6 +57,14 @@ public class Domicilio {
 
     public void setCP(int CP) {
         this.CP = CP;
+    }
+
+    public int getNumeroCasa() {
+        return numeroCasa;
+    }
+
+    public void setNumeroCasa(int numeroCasa) {
+        this.numeroCasa = numeroCasa;
     }
     
     

@@ -7,7 +7,7 @@ public class DomicilioNuevoDTO {
     private String calle;
     private String colonia;
     private int CP;
-    private String numeroCasa;
+    private int numeroCasa;
 
     public int getNumeroDomicilio() {
         return numeroDomicilio;
@@ -41,11 +41,11 @@ public class DomicilioNuevoDTO {
         this.CP = CP;
     }
 
-    public String getNumeroCasa() {
+    public int getNumeroCasa() {
         return numeroCasa;
     }
 
-    public void setNumeroCasa(String numeroCasa) {
+    public void setNumeroCasa(int numeroCasa) {
         this.numeroCasa = numeroCasa;
     }
 }
