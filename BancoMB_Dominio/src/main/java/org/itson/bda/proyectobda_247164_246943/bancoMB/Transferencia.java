@@ -6,20 +6,20 @@ public class Transferencia {
     private int folio;
     private int cuentaOrigen;
     private int numeroCuentaReceptor;
-    private float monto;
+    private double monto;
     private String motivoPago;
 
     public Transferencia() {
     }
 
-    public Transferencia(int cuentaOrigen, int numeroCuentaReceptor, float monto, String motivoPago) {
+    public Transferencia(int cuentaOrigen, int numeroCuentaReceptor, double monto, String motivoPago) {
         this.cuentaOrigen = cuentaOrigen;
         this.numeroCuentaReceptor = numeroCuentaReceptor;
         this.monto = monto;
         this.motivoPago = motivoPago;
     }
 
-    public Transferencia(int folio, int cuentaOrigen, int numeroCuentaReceptor, float monto, String motivoPago) {
+    public Transferencia(int folio, int cuentaOrigen, int numeroCuentaReceptor, double monto, String motivoPago) {
         this.folio = folio;
         this.cuentaOrigen = cuentaOrigen;
         this.numeroCuentaReceptor = numeroCuentaReceptor;
@@ -46,11 +46,11 @@ public class Transferencia {
         this.numeroCuentaReceptor = numeroCuentaReceptor;
     }
 
-    public float getMonto() {
+    public double getMonto() {
         return monto;
     }
 
-    public void setMonto(float monto) {
+    public void setMonto(double monto) {
         this.monto = monto;
     }
 
