@@ -4,7 +4,7 @@ package org.itson.bda.proyectobda_247164_246943.dtos;
 import java.sql.Date;  
 import java.time.LocalDateTime;
 
-public class RetiroSinCuentaNuevoDTO {
+public class RetiroSinCuentaNuevoDTO{
     private int folio;
     private int contrasenia;
     private Float monto;

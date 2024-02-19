@@ -15,6 +15,10 @@ import org.itson.bda.proyectobda_247164_246943.conexiones.IConexion;
 import org.itson.bda.proyectobda_247164_246943.dtos.CuentaNuevaDTO;
 import org.itson.bda.proyectobda_247164_246943.excepciones.PersistenciaException;
 
+/**
+ * Clase que implementa la interfaz ICuentasDAO y se encarga de realizar
+ * operaciones de acceso a datos para la entidad Cuentas en la base de datos.
+ */
 public class CuentasDAO implements ICuentasDAO {
 
     final IConexion conexionBD;
@@ -24,6 +28,14 @@ public class CuentasDAO implements ICuentasDAO {
         this.conexionBD = conexion;
     }
 
+    /**
+     * Método para consultar todas las cuentas almacenadas en la base de datos.
+     *
+     * @return Lista de objetos Cuentas con la información de las cuentas
+     * consultadas.
+     * @throws PersistenciaException Si ocurre un error durante la consulta a la
+     * base de datos.
+     */
     @Override
     public List<Cuentas> consultar() throws PersistenciaException {
         String sentenciaSQL = """
@@ -50,6 +62,15 @@ public class CuentasDAO implements ICuentasDAO {
         }
     }
 
+    /**
+     * Método para agregar una nueva cuenta a la base de datos.
+     *
+     * @param cuentaNueva Objeto CuentaNuevaDTO con la información de la nueva
+     * cuenta.
+     * @return Objeto Cuentas con la información de la cuenta agregada.
+     * @throws PersistenciaException Si ocurre un error durante la inserción en
+     * la base de datos.
+     */
     @Override
     public Cuentas agregar(CuentaNuevaDTO cuentaNueva) throws PersistenciaException {
         String sentenciaSQL = """

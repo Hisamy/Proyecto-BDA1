@@ -16,6 +16,10 @@ import org.itson.bda.proyectobda_247164_246943.dtos.DomicilioNuevoDTO;
 import org.itson.bda.proyectobda_247164_246943.excepciones.PersistenciaException;
 
 
+/**
+ * Clase que implementa la interfaz IDomiciliosDAO y se encarga de realizar
+ * operaciones de acceso a datos para la entidad Domicilio en la base de datos.
+ */
 public class DomiciliosDAO implements IDomiciliosDAO{
     final IConexion conexionBD;
     static final Logger logger = Logger.getLogger(ClientesDAO.class.getName());
@@ -24,6 +28,14 @@ public class DomiciliosDAO implements IDomiciliosDAO{
         this.conexionBD = conexion;
     }
 
+    /**
+     * Método para consultar todos los domicilios almacenados en la base de datos.
+     *
+     * @return Lista de objetos Domicilio con la información de los domicilios
+     * consultados.
+     * @throws PersistenciaException Si ocurre un error durante la consulta a la
+     * base de datos.
+     */
     @Override
     public List<Domicilio> consultar() throws PersistenciaException {
         String sentenciaSQL = """
@@ -49,7 +61,17 @@ public class DomiciliosDAO implements IDomiciliosDAO{
             throw new PersistenciaException("No se pudieron consultar los domicilios.", e);
         }
     }
-
+    
+    
+    /**
+     * Método para agregar un nuevo domicilio a la base de datos.
+     *
+     * @param domicilioNuevo Objeto DomicilioNuevoDTO con la información del nuevo
+     * domicilio.
+     * @return Objeto Domicilio con la información del domicilio agregado.
+     * @throws PersistenciaException Si ocurre un error durante la inserción en
+     * la base de datos.
+     */
     @Override
     public Domicilio agregar(DomicilioNuevoDTO domicilioNuevo) throws PersistenciaException {
         String sentenciaSQL = """

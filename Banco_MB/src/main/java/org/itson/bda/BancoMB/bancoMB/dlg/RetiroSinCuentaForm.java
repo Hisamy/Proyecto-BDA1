@@ -161,11 +161,8 @@ public class RetiroSinCuentaForm extends javax.swing.JFrame {
          claveFrame.setConcepto(concepto);  
         
         claveFrame.setMonto(String.valueOf(monto));
-        claveFrame.setContrasenia();
-        claveFrame.setFolio();
 
-        IRetiroSinCuentaDAO retirosSinCuentaDao = new RetirosSinCuentaDAO(conexion);
-        retirosSinCuentaDao.agregar(retiroSinCuentaNuevo);
+        retiroSinCuentaDAO.agregar(retiroSinCuentaNuevo);
         
         claveFrame.setVisible(true);
 

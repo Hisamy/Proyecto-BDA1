@@ -15,15 +15,33 @@ import org.itson.bda.proyectobda_247164_246943.conexiones.IConexion;
 import org.itson.bda.proyectobda_247164_246943.dtos.ClienteNuevoDTO;
 import org.itson.bda.proyectobda_247164_246943.excepciones.PersistenciaException;
 
+/**
+ * Clase que implementa la interfaz IClientesDAO y se encarga de realizar
+ * operaciones de acceso a datos para la entidad Clientes en la base de datos.
+ */
 public class ClientesDAO implements IClientesDAO {
 
     final IConexion conexionBD;
     static final Logger logger = Logger.getLogger(ClientesDAO.class.getName());
 
+    /**
+     * Constructor de la clase que recibe una instancia de IConexion.
+     *
+     * @param conexion Instancia de IConexion para manejar la conexión a la base
+     * de datos.
+     */
     public ClientesDAO(IConexion conexion) {
         this.conexionBD = conexion;
     }
     
+    /**
+     * Método para consultar todos los clientes almacenados en la base de datos.
+     *
+     * @return Lista de objetos Clientes con la información de los clientes
+     * consultados.
+     * @throws PersistenciaException Si ocurre un error durante la consulta a la
+     * base de datos.
+     */
     @Override
     public List<Clientes> consultar() throws PersistenciaException {
         String sentenciaSQL = """
@@ -43,7 +61,7 @@ public class ClientesDAO implements IClientesDAO {
                 String nombre = resultados.getString("nombre");
                 String apellidoPaterno = resultados.getString("apellidoPaterno");
                 String apellidoMaterno = resultados.getString("apellidoMaterno");
-                Clientes cliente = new Clientes(id,correo,fechaNacimiento ,nombre, apellidoPaterno, apellidoMaterno);
+                Clientes cliente = new Clientes(id, correo, fechaNacimiento, nombre, apellidoMaterno, apellidoPaterno);
                 listaClientes.add(cliente);
             }
             logger.log(Level.INFO, "Se consultaron {0} clientes", listaClientes.size());
@@ -54,6 +72,15 @@ public class ClientesDAO implements IClientesDAO {
         }
     }
 
+    /**
+     * Método para agregar un nuevo cliente a la base de datos.
+     *
+     * @param clienteNuevo Objeto ClienteNuevoDTO con la información del nuevo
+     * cliente.
+     * @return Objeto Clientes con la información del cliente agregado.
+     * @throws PersistenciaException Si ocurre un error durante la inserción en
+     * la base de datos.
+     */
     @Override
     public Clientes agregar(ClienteNuevoDTO clienteNuevo) throws PersistenciaException {
         String sentenciaSQL = """

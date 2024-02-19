@@ -11,21 +11,36 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.itson.bda.proyectobda_247164_246943.bancoMB.Cuentas;
 import org.itson.bda.proyectobda_247164_246943.bancoMB.RetirosSinCuenta;
 import org.itson.bda.proyectobda_247164_246943.conexiones.IConexion;
 import org.itson.bda.proyectobda_247164_246943.dtos.RetiroSinCuentaNuevoDTO;
 import org.itson.bda.proyectobda_247164_246943.excepciones.PersistenciaException;
 
+/**
+ * Clase que implementa la interfaz IRetiroSinCuentaDAO y se encarga de realizar
+ * operaciones de acceso a datos para la entidad RetirosSinCuenta en la base de datos.
+ */
 public class RetirosSinCuentaDAO implements IRetiroSinCuentaDAO {
 
     final IConexion conexionBD;
     static final Logger logger = Logger.getLogger(ClientesDAO.class.getName());
 
+    /**
+     * Constructor de la clase que recibe una instancia de IConexion.
+     *
+     * @param conexion Instancia de IConexion para manejar la conexión a la base
+     * de datos.
+     */
     public RetirosSinCuentaDAO(IConexion conexion) {
         this.conexionBD = conexion;
     }
 
+    /**
+     * Método para consultar todos los retiros sin cuenta almacenados en la base de datos.
+     *
+     * @return Lista de objetos RetirosSinCuenta con la información de los retiros sin cuenta consultados.
+     * @throws PersistenciaException Si ocurre un error durante la consulta a la base de datos.
+     */
     @Override
     public List<RetirosSinCuenta> consultar() throws PersistenciaException {
         String sentenciaSQL = """
@@ -52,6 +67,13 @@ public class RetirosSinCuentaDAO implements IRetiroSinCuentaDAO {
         }
     }
 
+    /**
+     * Método para agregar un nuevo retiro sin cuenta a la base de datos.
+     *
+     * @param retiroSinCuentaNuevo Objeto RetiroSinCuentaNuevoDTO con la información del nuevo retiro sin cuenta.
+     * @return Objeto RetirosSinCuenta con la información del retiro sin cuenta agregado.
+     * @throws PersistenciaException Si ocurre un error durante la inserción en la base de datos.
+     */
     @Override
     public RetirosSinCuenta agregar(RetiroSinCuentaNuevoDTO retiroSinCuentaNuevo) throws PersistenciaException {
         String sentenciaSQL = """
