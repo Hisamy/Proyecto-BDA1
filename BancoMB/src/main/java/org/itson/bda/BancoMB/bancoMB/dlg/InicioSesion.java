@@ -155,6 +155,10 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
+    SesionIniciada sesionIniciada = new SesionIniciada();
+    sesionIniciada.setVisible(true);
+    dispose();
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 

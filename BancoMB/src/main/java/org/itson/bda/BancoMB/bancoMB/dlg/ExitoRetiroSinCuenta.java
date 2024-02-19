@@ -1,13 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package org.itson.bda.BancoMB.bancoMB.dlg;
 
-/**
- *
- * @author Usuario
- */
+
 public class ExitoRetiroSinCuenta extends javax.swing.JFrame {
     
     private Acciones opcion;
@@ -36,6 +30,7 @@ public class ExitoRetiroSinCuenta extends javax.swing.JFrame {
         lblRetiroSinCuenta = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
         lblFolio = new javax.swing.JLabel();
+        lblFolio1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +81,8 @@ public class ExitoRetiroSinCuenta extends javax.swing.JFrame {
         lblFolio.setForeground(new java.awt.Color(0, 51, 102));
         lblFolio.setText("Folio");
 
+        lblFolio1.setText("Folio");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,7 +99,9 @@ public class ExitoRetiroSinCuenta extends javax.swing.JFrame {
                         .addComponent(lblRetiroSinCuenta))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(187, 187, 187)
-                        .addComponent(lblFolio)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblFolio1)
+                            .addComponent(lblFolio))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -114,7 +113,9 @@ public class ExitoRetiroSinCuenta extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblFolio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblFolio1)
+                .addGap(18, 18, 18)
                 .addComponent(btnSalir)
                 .addGap(21, 21, 21))
         );
@@ -168,6 +169,7 @@ public class ExitoRetiroSinCuenta extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblFolio;
+    private javax.swing.JLabel lblFolio1;
     private javax.swing.JLabel lblMensaje;
     private javax.swing.JLabel lblRetiroRealizado;
     private javax.swing.JLabel lblRetiroSinCuenta;
