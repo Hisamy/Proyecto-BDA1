@@ -37,6 +37,7 @@ public class HistorialDeOperaciones extends javax.swing.JFrame {
         lblHistorialDeOperaciones = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Historial de operaciones");
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 

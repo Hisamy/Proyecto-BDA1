@@ -48,6 +48,7 @@ public class InicioSesion extends javax.swing.JFrame {
         lblBancoMB = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Inicio de sesión");
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 153));
         jPanel1.setForeground(new java.awt.Color(0, 102, 153));

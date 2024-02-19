@@ -34,6 +34,7 @@ public class TransferirSegundaPantalla extends javax.swing.JFrame {
         lblTotalOperacion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Transferencia");
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 153));
 
@@ -83,7 +84,6 @@ public class TransferirSegundaPantalla extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(158, 158, 158)
                 .addComponent(btnConfirmar)
@@ -92,6 +92,7 @@ public class TransferirSegundaPantalla extends javax.swing.JFrame {
                 .addContainerGap(144, Short.MAX_VALUE)
                 .addComponent(lblTotalOperacion)
                 .addGap(129, 129, 129))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
