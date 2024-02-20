@@ -7,7 +7,7 @@ import java.sql.Date;
 public class CuentaNuevaDTO {
     private Integer numeroCuenta;
     private Date fechaApertura;
-    private float saldo;
+    private Double saldo;
 
     public Integer getNumeroCuenta() {
         return numeroCuenta;
@@ -25,11 +25,11 @@ public class CuentaNuevaDTO {
         this.fechaApertura = fechaApertura;
     }
 
-    public float getSaldo() {
+    public Double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(float saldo) {
+    public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
 
