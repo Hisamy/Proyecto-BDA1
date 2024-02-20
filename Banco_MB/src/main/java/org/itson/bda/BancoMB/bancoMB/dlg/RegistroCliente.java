@@ -363,7 +363,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         String colonia = txtColonia.getText();
         String codigoPostal = txtCP.getText();
         String numeroCasa = txtNumeroDomicilio.getText();
-        String correoElectronico = txtClave.getText();
+        String correoElectronico = txtCorreoElectronico1.getText();
         String clave = txtClave.getText();
 
         Date fechaNacimientoDate = null;

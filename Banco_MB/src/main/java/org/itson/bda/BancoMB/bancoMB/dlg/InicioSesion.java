@@ -1,25 +1,25 @@
-
 package org.itson.bda.BancoMB.bancoMB.dlg;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import org.itson.bda.BancoMB.bancoMB.BancoMB;
-
+import org.itson.bda.proyectobda_247164_246943.conexiones.Conexion;
+import org.itson.bda.proyectobda_247164_246943.conexiones.IConexion;
 
 public class InicioSesion extends javax.swing.JFrame {
-    
-    private Acciones opcion;    
 
-    /**
-     * Creates new form IniciarSesion
-     */
+    private Acciones opcion;
+    private static final Logger LOGGER = Logger.getLogger(InicioSesion.class.getName());
+
     public InicioSesion() {
         initComponents();
-                if (opcion == Acciones.CANCELAR) {
-            btnRegresar.setText("Cancelar");
 
-        } else if (opcion == Acciones.ACEPTAR) {
-            btnIniciarSesion.setText("Aceptar");
-            
-        }
     }
 
     /**
@@ -162,10 +162,57 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        SesionIniciada sesionIniciada = new SesionIniciada ();
-        sesionIniciada.setVisible(true);
-        dispose();
+       String correoElectronico = txtCorreoElectronico.getText();
+        String clave = txtClave.getText();
+
+        if (validarCorreo(correoElectronico) && validarClave(clave)) {
+            if (verificarInicioSesion(correoElectronico, clave)) {
+                LOGGER.info("Inicio de sesión exitoso para el usuario");
+                JOptionPane.showMessageDialog(rootPane,
+                        "Inicio de sesión exitoso", 
+                        "Iniciar sesión",
+                        JOptionPane.INFORMATION_MESSAGE);
+                SesionIniciada sesionIniciada = new SesionIniciada();
+                sesionIniciada.setVisible(true);
+                dispose();
+            } else {
+                 JOptionPane.showMessageDialog(rootPane,
+                        "Inicio de sesión fallido", 
+                        "Iniciar sesión",
+                        JOptionPane.ERROR_MESSAGE);
+                LOGGER.warning("Inicio de sesión fallido para el usuario");
+            }
+        } else {
+            LOGGER.warning("Correo o Clave inválida");
+        }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
+
+    private boolean verificarInicioSesion(String correoElectronico, String clave) {
+        try {
+            String sentenciaSQL = """
+                                  SELECT * FROM clientes 
+                                  WHERE correo = ? 
+                                  AND clave = ?
+                                  ;""";
+            String cadenaConexion = "jdbc:mysql://localhost/banco_mb";
+            String usuario = "root";
+            String password = "cinco123";
+            IConexion conexion = new Conexion(cadenaConexion, usuario, password);
+            Connection connection = conexion.obtenerConexion();
+
+            try (PreparedStatement statement = connection.prepareStatement(sentenciaSQL)) {
+                statement.setString(1, correoElectronico);
+                statement.setString(2, clave);
+               try (ResultSet resultSet = statement.executeQuery()) {
+                return true;
+            }
+                
+            }
+        } catch (SQLException e) {
+            return false;
+        }
+        
+    }
 
     private void txtCorreoElectronicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoElectronicoActionPerformed
         // TODO add your handling code here:
@@ -174,41 +221,21 @@ public class InicioSesion extends javax.swing.JFrame {
     private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtClaveActionPerformed
+private boolean validarCorreo(String correoElectronico) {
+        // Regular expression for a valid email address
+        String email = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(email);
+        Matcher matcher = pattern.matcher(correoElectronico);
+        return matcher.matches();
+    }
 
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(IniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(IniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(IniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(IniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new InicioSesion().setVisible(true);
-//            }
-//        });
-//    }
+    private boolean validarClave(String clave) {
+        // Regular expression for a password containing only numbers
+        String password = "^[0-9]+$";
+        Pattern pattern = Pattern.compile(password);
+        Matcher matcher = pattern.matcher(clave);
+        return matcher.matches();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarSesion;
