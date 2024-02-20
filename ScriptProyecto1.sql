@@ -36,9 +36,9 @@ DELIMITER ;
 
 CREATE TABLE banco_mb.cuentas (
   numero_cuenta INT NOT NULL AUTO_INCREMENT,
+  clave VARCHAR(10) NOT NULL,
   fecha_apertura DATE NOT NULL,
   saldo double NOT NULL,
-  clave VARCHAR(4) NOT NULL,
   id_cliente INT NOT NULL,
   FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
   PRIMARY KEY (numero_cuenta)

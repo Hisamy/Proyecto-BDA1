@@ -102,7 +102,7 @@ public class CuentasDAO implements ICuentasDAO {
         );
     } catch (SQLException e) {
         logger.log(Level.SEVERE, "No se pudo guardar la cuenta.", e);
-        throw new PersistenciaException("No se pudo guardar el cuenta.", e);
+        throw new PersistenciaException("No se pudo guardar la cuenta.", e);
     }
 
 }

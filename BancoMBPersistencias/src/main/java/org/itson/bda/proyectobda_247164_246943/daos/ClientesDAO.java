@@ -33,7 +33,7 @@ public class ClientesDAO implements IClientesDAO {
     public ClientesDAO(IConexion conexion) {
         this.conexionBD = conexion;
     }
-    
+
     /**
      * Método para consultar todos los clientes almacenados en la base de datos.
      *
@@ -50,19 +50,17 @@ public class ClientesDAO implements IClientesDAO {
                               """;
         List<Clientes> listaClientes = new LinkedList<>();
         try (
-            Connection conexion = this.conexionBD.obtenerConexion(); 
-            PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);
-        ) {
+                Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
             ResultSet resultados = comando.executeQuery();
             while (resultados.next()) {
                 Integer id = resultados.getInt("id");
                 String correo = resultados.getString("Correo");
                 Integer clave = resultados.getInt("clave");
                 Date fechaNacimiento = resultados.getDate("fechaNacimiento");
-                String nombre = resultados.getString("nombre");
+                String nombre = resultados.getString("nombres");
                 String apellidoPaterno = resultados.getString("apellidoPaterno");
                 String apellidoMaterno = resultados.getString("apellidoMaterno");
-                Clientes cliente = new Clientes(id, correo, fechaNacimiento, nombre, apellidoMaterno, apellidoPaterno);
+                Clientes cliente = new Clientes(id, clave,correo,fechaNacimiento, nombre, apellidoMaterno, apellidoPaterno);
                 listaClientes.add(cliente);
             }
             logger.log(Level.INFO, "Se consultaron {0} clientes", listaClientes.size());
@@ -93,13 +91,11 @@ public class ClientesDAO implements IClientesDAO {
                               VALUES(?,?,?,?,?,?,?);
                               """;
         try (
-            Connection conexion = this.conexionBD.obtenerConexion(); 
-            PreparedStatement comando = conexion.prepareStatement(sentenciaSQL, Statement.RETURN_GENERATED_KEYS);
-        ) {
-            
+                Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL, Statement.RETURN_GENERATED_KEYS);) {
+
             comando.setString(1, clienteNuevo.getCorreoElectronico());
-             comando.setInt(2, clienteNuevo.getClave());
-             comando.setDate(3, clienteNuevo.getFechaNacimiento());           
+            comando.setInt(2, clienteNuevo.getClave());
+            comando.setDate(3, clienteNuevo.getFechaNacimiento());
             comando.setString(4, clienteNuevo.getNombre());
             comando.setString(5, clienteNuevo.getApellidoPaterno());
             comando.setString(6, clienteNuevo.getApellidoMaterno());
@@ -124,5 +120,4 @@ public class ClientesDAO implements IClientesDAO {
         }
     }
 
-   
 }
