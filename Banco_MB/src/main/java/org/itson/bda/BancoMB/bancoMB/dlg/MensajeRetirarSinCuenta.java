@@ -115,7 +115,7 @@ public class MensajeRetirarSinCuenta extends javax.swing.JFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
        BancoMB.menuInicio.setVisible(true);
-       dispose();
+//       dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     

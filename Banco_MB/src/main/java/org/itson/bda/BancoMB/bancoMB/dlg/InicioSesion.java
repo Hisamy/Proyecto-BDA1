@@ -164,7 +164,7 @@ public class InicioSesion extends javax.swing.JFrame {
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
         BancoMB.menuInicio.setVisible(true);
-        dispose();
+//        dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
