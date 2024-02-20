@@ -39,7 +39,7 @@ public class CuentasDAO implements ICuentasDAO {
     @Override
     public List<Cuentas> consultar() throws PersistenciaException {
         String sentenciaSQL = """
-                              SELECT numero_cuenta, fecha_apertura, saldo
+                              SELECT numero_cuenta, fecha_apertura, saldo, idCliente
                               FROM cuentas;
                               """;
         List<Cuentas> listaClientes = new LinkedList<>();
@@ -49,8 +49,9 @@ public class CuentasDAO implements ICuentasDAO {
             while (resultados.next()) {
                 Integer numero_cuenta = resultados.getInt("numeroCuenta");
                 Date fecha_apertura = resultados.getDate("fechaApertura");
-                float saldo = resultados.getFloat("saldo");
-                Cuentas cuenta = new Cuentas(numero_cuenta, fecha_apertura, saldo);
+                double saldo = resultados.getFloat("saldo");
+                int idCliente = resultados.getInt("idCliente");
+                Cuentas cuenta = new Cuentas(numero_cuenta, fecha_apertura, saldo, idCliente);
                 listaClientes.add(cuenta);
             }
             logger.log(Level.INFO, "Se consultaron {0} cuentas", listaClientes.size());
@@ -73,18 +74,19 @@ public class CuentasDAO implements ICuentasDAO {
     @Override
     public Cuentas agregar(CuentaNuevaDTO cuentaNueva) throws PersistenciaException {
         String sentenciaSQL = """
-                              INSERT INTO cuentas(fecha_apertura,saldo) 
+                              INSERT INTO cuentas(fecha_apertura,saldo, idClientes) 
                               VALUES(?, ?, ?);
                               """;
         try (
                 Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL, Statement.RETURN_GENERATED_KEYS);) {
             comando.setDate(1, cuentaNueva.getFechaApertura());
-            comando.setFloat(2, cuentaNueva.getSaldo());
+            comando.setDouble(2, cuentaNueva.getSaldo());
+            comando.setInt(3,cuentaNueva.getIdCliente());
             int numeroRegistrosInsertados = comando.executeUpdate();
             logger.log(Level.INFO, "Se agregaron {0} cuentas", numeroRegistrosInsertados);
             ResultSet numeroCuentasGeneradas = comando.getGeneratedKeys();
             numeroCuentasGeneradas.next();
-            return new Cuentas(numeroCuentasGeneradas.getInt(1), cuentaNueva.getFechaApertura(), cuentaNueva.getSaldo());
+            return new Cuentas(numeroCuentasGeneradas.getInt(1), cuentaNueva.getFechaApertura(), cuentaNueva.getSaldo(), cuentaNueva.getIdCliente());
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "No se pudo guardar la cuenta.", e);
             throw new PersistenciaException("No se pudo guardar el cuenta.", e);
