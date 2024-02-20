@@ -1,29 +1,29 @@
 package org.itson.bda.BancoMB.bancoMB.dlg;
 
-import java.awt.HeadlessException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import org.itson.bda.BancoMB.bancoMB.BancoMB;
 import org.itson.bda.proyectobda_247164_246943.bancoMB.Cuentas;
-import org.itson.bda.proyectobda_247164_246943.conexiones.Conexion;
-import org.itson.bda.proyectobda_247164_246943.daos.CuentasDAO;
 import org.itson.bda.proyectobda_247164_246943.daos.ICuentasDAO;
 import org.itson.bda.proyectobda_247164_246943.dtos.CuentaNuevaDTO;
 import org.itson.bda.proyectobda_247164_246943.excepciones.PersistenciaException;
 
 public class MensajeMontoCuenta extends javax.swing.JFrame {
 
-    private ICuentasDAO cuentasDAO;
+    private final ICuentasDAO cuentasDAO;
+    private Integer idCliente;
 
-    public MensajeMontoCuenta(ICuentasDAO cuentasDAO) {
+    public MensajeMontoCuenta(ICuentasDAO cuentasDAO, Integer idCliente) {
         initComponents();
         this.cuentasDAO = cuentasDAO;
-    }
-
-    public MensajeMontoCuenta() throws HeadlessException {
+        int numeroCuenta = generarNumeroCuenta();
+        this.idCliente = idCliente;
+        lblNumeroCuenta.setText("" + numeroCuenta);
     }
 
     @SuppressWarnings("unchecked")
@@ -36,9 +36,8 @@ public class MensajeMontoCuenta extends javax.swing.JFrame {
         lblMonto = new javax.swing.JLabel();
         lblTexto = new javax.swing.JLabel();
         lblCuenta = new javax.swing.JLabel();
-        btnRegresar = new javax.swing.JButton();
         btnCrear = new javax.swing.JButton();
-        numeroCuenta = new javax.swing.JLabel();
+        lblNumeroCuenta = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,13 +61,6 @@ public class MensajeMontoCuenta extends javax.swing.JFrame {
         lblCuenta.setForeground(new java.awt.Color(255, 255, 255));
         lblCuenta.setText("Cuenta");
 
-        btnRegresar.setText("Regresar");
-        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegresarActionPerformed(evt);
-            }
-        });
-
         btnCrear.setText("Crear");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,8 +68,8 @@ public class MensajeMontoCuenta extends javax.swing.JFrame {
             }
         });
 
-        numeroCuenta.setForeground(new java.awt.Color(255, 255, 255));
-        numeroCuenta.setText("numero Cuenta");
+        lblNumeroCuenta.setForeground(new java.awt.Color(255, 255, 255));
+        lblNumeroCuenta.setText("numero Cuenta");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,18 +82,19 @@ public class MensajeMontoCuenta extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(lblMonto)
                         .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(lblCuenta)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(btnRegresar)
-                            .addGap(63, 63, 63)
-                            .addComponent(btnCrear))
-                        .addComponent(numeroCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lblNumeroCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(94, Short.MAX_VALUE)
-                .addComponent(lblTexto)
-                .addGap(79, 79, 79))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblTexto)
+                        .addGap(79, 79, 79))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnCrear)
+                        .addGap(168, 168, 168))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,12 +110,10 @@ public class MensajeMontoCuenta extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblCuenta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(numeroCuenta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegresar)
-                    .addComponent(btnCrear))
-                .addGap(27, 27, 27))
+                .addComponent(lblNumeroCuenta)
+                .addGap(33, 33, 33)
+                .addComponent(btnCrear)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic Medium", 3, 14)); // NOI18N
@@ -149,18 +140,19 @@ public class MensajeMontoCuenta extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+        try {
+            crearCuenta();
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(MensajeMontoCuenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
         SesionIniciada sesionIniciada = new SesionIniciada();
         sesionIniciada.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCrearActionPerformed
-
-    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        BancoMB.registroCliente.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
         // TODO add your handling code here:
@@ -168,45 +160,53 @@ public class MensajeMontoCuenta extends javax.swing.JFrame {
 
     private void crearCuenta() throws PersistenciaException {
         String monto = txtMonto.getText();
-        Double dinero = null;
+        double dinero = 0.0;
+
         try {
             dinero = Double.parseDouble(monto);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Dirección inválida", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un monto válido", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        CuentasDAO cuentaDAO = new CuentasDAO(new Conexion("jdbc:mysql://localhost/banco_mb", "root", "cinco123"));
-        CuentaNuevaDTO cuentaNueva = new CuentaNuevaDTO();
 
+        CuentaNuevaDTO cuentaNueva = new CuentaNuevaDTO();
         cuentaNueva.setFechaApertura(Date.valueOf(LocalDate.now()));
         cuentaNueva.setSaldo(dinero);
+        cuentaNueva.setNumeroCuenta(generarNumeroCuenta());
 
         try {
-            Cuentas cuentaRegistrada = this.cuentasDAO.agregar(cuentaNueva);
+            Cuentas cuentaRegistrada = this.cuentasDAO.agregar(cuentaNueva, idCliente);
             cuentaNueva.setNumeroCuenta(cuentaRegistrada.getNumeroCuenta());
-        } catch (PersistenciaException ex) {
-            Logger.getLogger(MensajeMontoCuenta.class.getName()).log(Level.SEVERE, null, ex);
 
+        } catch (Exception ex) {
+            Logger.getLogger(MensajeMontoCuenta.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-      
     }
 
-    private Integer generarNumeroCuenta(){
-        
+    private Integer generarNumeroCuenta() {
+        Random random = new Random();
+        int numeroCuenta;
+        Set<Integer> numerosDeCuentaGenerados = new HashSet<>();
+
+        do {
+            numeroCuenta = 100000000 + random.nextInt(900000000);
+        } while (numerosDeCuentaGenerados.contains(numeroCuenta));
+
+        numerosDeCuentaGenerados.add(numeroCuenta);
+        return numeroCuenta;
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrear;
-    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblCuenta;
     private javax.swing.JLabel lblMonto;
+    private javax.swing.JLabel lblNumeroCuenta;
     private javax.swing.JLabel lblTexto;
-    private javax.swing.JLabel numeroCuenta;
     private javax.swing.JTextField txtMonto;
     // End of variables declaration//GEN-END:variables
 }

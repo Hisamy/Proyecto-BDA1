@@ -3,17 +3,21 @@ package org.itson.bda.BancoMB.bancoMB.dlg;
 
 import org.itson.bda.BancoMB.bancoMB.BancoMB;
 import org.itson.bda.proyectobda_247164_246943.daos.IClientesDAO;
+import org.itson.bda.proyectobda_247164_246943.daos.ICuentasDAO;
 import org.itson.bda.proyectobda_247164_246943.daos.IDomiciliosDAO;
 
 
 public class MenuInicio extends javax.swing.JFrame {
 
-    private IClientesDAO clientesDAO;
-    private IDomiciliosDAO domiciliosDAO;
+    private final IClientesDAO clientesDAO;
+    private final IDomiciliosDAO domiciliosDAO;
+    private final ICuentasDAO cuentasDAO;
 
-    public MenuInicio(IClientesDAO clientesDAO, IDomiciliosDAO domicilioDAO) {
+    public MenuInicio(IClientesDAO clientesDAO, IDomiciliosDAO domicilioDAO, ICuentasDAO cuentasDAO) {
         this.clientesDAO = clientesDAO;
         this.domiciliosDAO = domicilioDAO;
+        this.cuentasDAO = cuentasDAO;
+        
         initComponents();
     }
 
@@ -185,7 +189,8 @@ public class MenuInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        RegistroCliente registroCliente = new RegistroCliente(this.clientesDAO, this.domiciliosDAO);
+        RegistroCliente registroCliente = new RegistroCliente
+        (this.clientesDAO, this.domiciliosDAO,this.cuentasDAO);
         registroCliente.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnRegistrarseActionPerformed
@@ -196,40 +201,6 @@ public class MenuInicio extends javax.swing.JFrame {
         this.setVisible(false);        
     }//GEN-LAST:event_btnRetirarSinCuentaActionPerformed
 
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(MenuInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(MenuInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(MenuInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(MenuInicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new MenuInicio().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PnlFondoAzul;

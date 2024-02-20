@@ -10,6 +10,7 @@ import org.itson.bda.BancoMB.bancoMB.BancoMB;
 import org.itson.bda.proyectobda_247164_246943.bancoMB.Clientes;
 import org.itson.bda.proyectobda_247164_246943.bancoMB.Domicilio;
 import org.itson.bda.proyectobda_247164_246943.daos.IClientesDAO;
+import org.itson.bda.proyectobda_247164_246943.daos.ICuentasDAO;
 import org.itson.bda.proyectobda_247164_246943.daos.IDomiciliosDAO;
 import org.itson.bda.proyectobda_247164_246943.dtos.ClienteNuevoDTO;
 import org.itson.bda.proyectobda_247164_246943.dtos.DomicilioNuevoDTO;
@@ -17,13 +18,16 @@ import org.itson.bda.proyectobda_247164_246943.excepciones.PersistenciaException
 
 public class RegistroCliente extends javax.swing.JFrame {
 
-    private IClientesDAO clienteDAO;
-    private IDomiciliosDAO domicilioDAO;
+    private final IClientesDAO clienteDAO;
+    private final IDomiciliosDAO domicilioDAO;
+    private final ICuentasDAO cuentasDAO;
 
-    public RegistroCliente(IClientesDAO clienteDAO, IDomiciliosDAO domicilioDAO) {
+    public RegistroCliente(IClientesDAO clienteDAO, IDomiciliosDAO domicilioDAO, ICuentasDAO cuentasDAO) {
+        this.initComponents();              
         this.clienteDAO = clienteDAO;
         this.domicilioDAO = domicilioDAO;
-        this.initComponents();
+        this.cuentasDAO = cuentasDAO;
+
     }
 
     /**
@@ -84,18 +88,21 @@ public class RegistroCliente extends javax.swing.JFrame {
 
         jLabel5.setText("Apellido materno:");
 
+        txtNombres.setText("Hisamy");
         txtNombres.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombresActionPerformed(evt);
             }
         });
 
+        txtFechaNacimiento.setText("12/10/2004");
         txtFechaNacimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFechaNacimientoActionPerformed(evt);
             }
         });
 
+        txtApellidoPaterno1.setText("Cinco");
         txtApellidoPaterno1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtApellidoPaterno1ActionPerformed(evt);
@@ -104,6 +111,7 @@ public class RegistroCliente extends javax.swing.JFrame {
 
         jLabel6.setText("DOMICILIO");
 
+        txtApellidoMaterno1.setText("Cota");
         txtApellidoMaterno1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtApellidoMaterno1ActionPerformed(evt);
@@ -118,6 +126,11 @@ public class RegistroCliente extends javax.swing.JFrame {
 
         jLabel10.setText("Colonia:");
 
+        txtCalle.setText("Alamos");
+
+        txtColonia.setText("Sinaloa");
+
+        txtCP.setText("231");
         txtCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCPActionPerformed(evt);
@@ -137,6 +150,8 @@ public class RegistroCliente extends javax.swing.JFrame {
 
         jLabel11.setText("Numero de casa:");
 
+        txtNumeroDomicilio.setText("12");
+
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,6 +160,13 @@ public class RegistroCliente extends javax.swing.JFrame {
         });
 
         jLabel13.setText("Correo electrónico:");
+
+        txtCorreoElectronico1.setText("hisamy@gmail.com");
+        txtCorreoElectronico1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoElectronico1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -342,8 +364,10 @@ public class RegistroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCPActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        agregarCliente();
-        MensajeMontoCuenta mensajeMontoCuenta = new MensajeMontoCuenta();
+        Clientes clienteAgregar = agregarCliente();
+        MensajeMontoCuenta mensajeMontoCuenta = new MensajeMontoCuenta(cuentasDAO, clienteAgregar.getId());
+        mensajeMontoCuenta.setVisible(true);
+        BancoMB.menuInicio.setVisible(false);
         dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
@@ -352,7 +376,11 @@ public class RegistroCliente extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void agregarCliente(){
+    private void txtCorreoElectronico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoElectronico1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoElectronico1ActionPerformed
+
+    private Clientes agregarCliente() {
         String nombres = txtNombres.getText();
         String apellidoPaterno = txtApellidoPaterno1.getText();
         String apellidoMaterno = txtApellidoMaterno1.getText();
@@ -371,7 +399,7 @@ public class RegistroCliente extends javax.swing.JFrame {
             fechaNacimientoDate = new Date(parsedDate.getTime());
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(this, "Fecha inválida", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+
         }
 
         Integer numeroDeCasa = null;
@@ -381,7 +409,7 @@ public class RegistroCliente extends javax.swing.JFrame {
             codigo = Integer.parseInt(codigoPostal);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Dirección inválida", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+
         }
 
         Integer password = null;
@@ -389,7 +417,7 @@ public class RegistroCliente extends javax.swing.JFrame {
             password = Integer.parseInt(clave);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Contraseña inválida", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+
         }
 
         ClienteNuevoDTO nuevoCliente = new ClienteNuevoDTO();
@@ -411,12 +439,15 @@ public class RegistroCliente extends javax.swing.JFrame {
             Domicilio domicilioRegistrado = this.domicilioDAO.agregar(nuevoDomicilio);
             nuevoCliente.setNumeroDomicilio(domicilioRegistrado.getNumeroDomicilio());
             Clientes clienteRegistrado = this.clienteDAO.agregar(nuevoCliente);
+            return clienteRegistrado;
         } catch (PersistenciaException ex) {
             Logger.getLogger(RegistroCliente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Error al registrar el cliente", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
         }
+        return null;
+
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;

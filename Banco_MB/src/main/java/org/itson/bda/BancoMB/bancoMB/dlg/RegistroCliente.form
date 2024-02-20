@@ -274,16 +274,25 @@
         <Component class="javax.swing.JSeparator" name="jSeparator1">
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombres">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Hisamy"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombresActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtFechaNacimiento">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="12/10/2004"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFechaNacimientoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtApellidoPaterno1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cinco"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtApellidoPaterno1ActionPerformed"/>
           </Events>
@@ -294,6 +303,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtApellidoMaterno1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cota"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtApellidoMaterno1ActionPerformed"/>
           </Events>
@@ -321,10 +333,19 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCalle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Alamos"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtColonia">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sinaloa"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCP">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="231"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCPActionPerformed"/>
           </Events>
@@ -357,6 +378,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNumeroDomicilio">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="12"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnCancelar">
           <Properties>
@@ -372,6 +396,12 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCorreoElectronico1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="hisamy@gmail.com"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCorreoElectronico1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtClave">
         </Component>

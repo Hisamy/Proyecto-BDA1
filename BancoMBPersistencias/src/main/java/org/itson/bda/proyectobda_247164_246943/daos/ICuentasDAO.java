@@ -11,6 +11,6 @@ public interface ICuentasDAO {
  
     List<Cuentas> consultar() throws PersistenciaException;
 
-    Cuentas agregar(CuentaNuevaDTO cuentaNueva) throws PersistenciaException;
+    Cuentas agregar(CuentaNuevaDTO cuentaNueva, Integer idCliente) throws PersistenciaException;
 }
 
