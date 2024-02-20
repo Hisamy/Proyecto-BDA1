@@ -39,7 +39,10 @@ public class DomiciliosDAO implements IDomiciliosDAO{
     @Override
     public List<Domicilio> consultar() throws PersistenciaException {
         String sentenciaSQL = """
-                              SELECT numero_domicilio, calle, colonia, codigo_postal, numero_casa
+                              SELECT numero_domicilio, 
+                              calle, colonia, 
+                              codigo_postal, 
+                              numero_casa
                               FROM Domicilio;
                               """;
         List<Domicilio> listaDomicilio = new LinkedList<>();
