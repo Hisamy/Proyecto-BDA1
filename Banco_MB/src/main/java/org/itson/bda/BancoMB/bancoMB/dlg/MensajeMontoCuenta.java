@@ -3,12 +3,16 @@ package org.itson.bda.BancoMB.bancoMB.dlg;
 import java.awt.HeadlessException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.itson.bda.BancoMB.bancoMB.BancoMB;
+import org.itson.bda.proyectobda_247164_246943.bancoMB.Cuentas;
 import org.itson.bda.proyectobda_247164_246943.conexiones.Conexion;
 import org.itson.bda.proyectobda_247164_246943.daos.CuentasDAO;
 import org.itson.bda.proyectobda_247164_246943.daos.ICuentasDAO;
 import org.itson.bda.proyectobda_247164_246943.dtos.CuentaNuevaDTO;
+import org.itson.bda.proyectobda_247164_246943.excepciones.PersistenciaException;
 
 public class MensajeMontoCuenta extends javax.swing.JFrame {
 
@@ -41,6 +45,12 @@ public class MensajeMontoCuenta extends javax.swing.JFrame {
         setTitle("Monto de la cuenta");
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 153));
+
+        txtMonto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMontoActionPerformed(evt);
+            }
+        });
 
         lblMonto.setForeground(new java.awt.Color(255, 255, 255));
         lblMonto.setText("Monto");
@@ -152,8 +162,12 @@ public class MensajeMontoCuenta extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void crearCuenta() {
-        String monto = txtMonto.getText();       
+    private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMontoActionPerformed
+
+    private void crearCuenta() throws PersistenciaException {
+        String monto = txtMonto.getText();
         Double dinero = null;
         try {
             dinero = Double.parseDouble(monto);
@@ -162,22 +176,24 @@ public class MensajeMontoCuenta extends javax.swing.JFrame {
             return;
         }
         CuentasDAO cuentaDAO = new CuentasDAO(new Conexion("jdbc:mysql://localhost/banco_mb", "root", "cinco123"));
-        CuentaNuevaDTO cuentaNueva = new CuentaNuevaDTO ();
-        
+        CuentaNuevaDTO cuentaNueva = new CuentaNuevaDTO();
+
         cuentaNueva.setFechaApertura(Date.valueOf(LocalDate.now()));
         cuentaNueva.setSaldo(dinero);
-        if (cuentaDAO.agregar(cuentaNueva)) {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Cuenta creada exitosamente",
-                    "Crear cuenta",
-                    JOptionPane.INFORMATION_MESSAGE);
-            // Additional logic if needed
-        } else {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Error al crear la cuenta",
-                    "Crear cuenta",
-                    JOptionPane.ERROR_MESSAGE);
+
+        try {
+            Cuentas cuentaRegistrada = this.cuentasDAO.agregar(cuentaNueva);
+            cuentaNueva.setNumeroCuenta(cuentaRegistrada.getNumeroCuenta());
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(MensajeMontoCuenta.class.getName()).log(Level.SEVERE, null, ex);
+
         }
+
+      
+    }
+
+    private Integer generarNumeroCuenta(){
+        
     }
 
 
