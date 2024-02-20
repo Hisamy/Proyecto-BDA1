@@ -44,6 +44,7 @@ public class Domicilio {
         this.CP = CP;
         this.numeroCasa = numeroCasa;
     }
+
     /**
      * 
      * @return get de número de domicilio.
@@ -62,6 +63,16 @@ public class Domicilio {
      * 
      * @return get de la calle del domicilio.
      */
+
+
+    public int getNumeroDomicilio() {
+        return numeroDomicilio;
+    }
+
+    public void setNumeroDomicilio(int numeroDomicilio) {
+        this.numeroDomicilio = numeroDomicilio;
+    }
+
     public String getCalle() {
         return calle;
     }

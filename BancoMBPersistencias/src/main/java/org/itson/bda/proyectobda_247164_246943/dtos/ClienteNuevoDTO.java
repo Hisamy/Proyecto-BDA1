@@ -2,6 +2,7 @@
 package org.itson.bda.proyectobda_247164_246943.dtos;
 
 import java.sql.Date;
+import org.itson.bda.proyectobda_247164_246943.bancoMB.Domicilio;
 
 
 public class ClienteNuevoDTO {

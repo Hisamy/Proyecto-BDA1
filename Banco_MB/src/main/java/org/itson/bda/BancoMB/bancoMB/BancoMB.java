@@ -20,7 +20,7 @@ public class BancoMB {
     public static void main(String[] args) {
       String cadenaConexion = "jdbc:mysql://localhost/banco_mb";
         String usuario = "root";
-        String password = "1234";
+        String password = "cinco123";
         IConexion conexion = new Conexion(cadenaConexion, usuario, password);
         IClientesDAO clientesDAO = new ClientesDAO(conexion);
         IDomiciliosDAO domiciliosDAO = new DomiciliosDAO(conexion);
