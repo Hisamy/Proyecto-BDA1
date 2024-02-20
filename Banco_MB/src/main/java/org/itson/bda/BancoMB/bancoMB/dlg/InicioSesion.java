@@ -4,21 +4,24 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import org.itson.bda.BancoMB.bancoMB.BancoMB;
-import org.itson.bda.proyectobda_247164_246943.conexiones.Conexion;
+import org.itson.bda.proyectobda_247164_246943.bancoMB.Clientes;
 import org.itson.bda.proyectobda_247164_246943.conexiones.IConexion;
 
 public class InicioSesion extends javax.swing.JFrame {
 
     private Acciones opcion;
     private static final Logger LOGGER = Logger.getLogger(InicioSesion.class.getName());
+    final IConexion conexionBD;
 
-    public InicioSesion() {
+    public InicioSesion(IConexion conexion) {
         initComponents();
+        this.conexionBD = conexion;
 
     }
 
@@ -156,63 +159,84 @@ public class InicioSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
         BancoMB.menuInicio.setVisible(true);
-//        dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-       String correoElectronico = txtCorreoElectronico.getText();
-        String clave = txtClave.getText();
+        try {
+            String correoElectronico = txtCorreoElectronico.getText();
+            String clave = txtClave.getText();
+            Integer claves = Integer.parseInt(clave);
 
-        if (validarCorreo(correoElectronico) && validarClave(clave)) {
-            if (verificarInicioSesion(correoElectronico, clave)) {
-                LOGGER.info("Inicio de sesión exitoso para el usuario");
-                JOptionPane.showMessageDialog(rootPane,
-                        "Inicio de sesión exitoso", 
-                        "Iniciar sesión",
-                        JOptionPane.INFORMATION_MESSAGE);
-                SesionIniciada sesionIniciada = new SesionIniciada();
-                sesionIniciada.setVisible(true);
-                dispose();
+            if (validarCorreo(correoElectronico) && validarClave(claves)) {
+                try {
+                    if (verificarInicioSesion(correoElectronico, claves)) {
+                        LOGGER.info("Inicio de sesión exitoso para el usuario");
+                        JOptionPane.showMessageDialog(rootPane,
+                                "Inicio de sesión exitoso",
+                                "Iniciar sesión",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        SesionIniciada sesionIniciada = new SesionIniciada();
+                        sesionIniciada.setVisible(true);
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane,
+                                "Inicio de sesión fallido",
+                                "Iniciar sesión",
+                                JOptionPane.ERROR_MESSAGE);
+                        LOGGER.warning("Inicio de sesión fallido para el usuario");
+                    }
+                } catch (SQLException ex) {
+                    // Handle SQLException when calling verificarInicioSesion
+                    JOptionPane.showMessageDialog(rootPane,
+                            "Error en la verificación de inicio de sesión",
+                            "Error de base de datos",
+                            JOptionPane.ERROR_MESSAGE);
+                    LOGGER.warning("Error de base de datos al verificar inicio de sesión: " + ex.getMessage());
+                }
             } else {
-                 JOptionPane.showMessageDialog(rootPane,
-                        "Inicio de sesión fallido", 
-                        "Iniciar sesión",
+                JOptionPane.showMessageDialog(rootPane,
+                        "Llene correctamente los campos",
+                        "ERROR",
                         JOptionPane.ERROR_MESSAGE);
-                LOGGER.warning("Inicio de sesión fallido para el usuario");
+                LOGGER.warning("Correo o Clave inválida");
             }
-        } else {
-            LOGGER.warning("Correo o Clave inválida");
+        } catch (NumberFormatException ex) {
+            // Handle the case where clave is not a valid Integer
+            JOptionPane.showMessageDialog(rootPane,
+                    "La clave debe ser un número válido",
+                    "Error de formato",
+                    JOptionPane.ERROR_MESSAGE);
+            LOGGER.warning("Error de formato en la clave: " + ex.getMessage());
         }
+
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
-    private boolean verificarInicioSesion(String correoElectronico, String clave) {
-        try {
+    private boolean verificarInicioSesion(String correoElectronico, Integer clave) throws SQLException {     
             String sentenciaSQL = """
-                                  SELECT * FROM clientes 
+                                  SELECT correo, clave FROM clientes 
                                   WHERE correo = ? 
                                   AND clave = ?
                                   ;""";
-            String cadenaConexion = "jdbc:mysql://localhost/banco_mb";
-            String usuario = "root";
-            String password = "cinco123";
-            IConexion conexion = new Conexion(cadenaConexion, usuario, password);
-            Connection connection = conexion.obtenerConexion();
+            try (Connection connection = this.conexionBD.obtenerConexion(); PreparedStatement statement = connection.prepareStatement(sentenciaSQL)) {
 
-            try (PreparedStatement statement = connection.prepareStatement(sentenciaSQL)) {
-                statement.setString(1, correoElectronico);
-                statement.setString(2, clave);
-               try (ResultSet resultSet = statement.executeQuery()) {
-                return true;
-            }
-                
-            }
-        } catch (SQLException e) {
-            return false;
-        }
-        
-    }
+                statement.setString(1, txtCorreoElectronico.getText());
+                statement.setInt(2, Integer.parseInt(txtClave.getText()));
+
+                try (ResultSet resultados = statement.executeQuery()) {
+                    if (resultados.next()) {
+                        String correo = resultados.getString("correo");
+                        Integer contrasenia = resultados.getInt("clave");
+                        return true;
+                    }
+                }
+            } catch (SQLException e) {
+                return false;
+            } 
+        return false;
+
+    }   
+    
 
     private void txtCorreoElectronicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoElectronicoActionPerformed
         // TODO add your handling code here:
@@ -221,7 +245,7 @@ public class InicioSesion extends javax.swing.JFrame {
     private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtClaveActionPerformed
-private boolean validarCorreo(String correoElectronico) {
+    private boolean validarCorreo(String correoElectronico) {
         // Regular expression for a valid email address
         String email = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         Pattern pattern = Pattern.compile(email);
@@ -229,12 +253,11 @@ private boolean validarCorreo(String correoElectronico) {
         return matcher.matches();
     }
 
-    private boolean validarClave(String clave) {
-        // Regular expression for a password containing only numbers
-        String password = "^[0-9]+$";
-        Pattern pattern = Pattern.compile(password);
-        Matcher matcher = pattern.matcher(clave);
-        return matcher.matches();
+    private boolean validarClave(Integer clave) {
+        if (clave == null) {
+            return false;
+        }
+        return true;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

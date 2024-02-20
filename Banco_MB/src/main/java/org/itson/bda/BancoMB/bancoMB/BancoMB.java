@@ -2,6 +2,7 @@
 
 package org.itson.bda.BancoMB.bancoMB;
 
+import org.itson.bda.BancoMB.bancoMB.dlg.InicioSesion;
 import org.itson.bda.BancoMB.bancoMB.dlg.MenuInicio;
 import org.itson.bda.BancoMB.bancoMB.dlg.RetiroSinCuentaForm;
 import org.itson.bda.proyectobda_247164_246943.conexiones.Conexion;
@@ -16,6 +17,7 @@ import org.itson.bda.proyectobda_247164_246943.daos.RetirosSinCuentaDAO;
 public class BancoMB {
 
     public static MenuInicio menuInicio;
+    public static InicioSesion inicioSesion;
     
     public static void main(String[] args) {
       String cadenaConexion = "jdbc:mysql://localhost/banco_mb";
@@ -28,6 +30,8 @@ public class BancoMB {
         RetiroSinCuentaForm retiroSinCuentaForm = new RetiroSinCuentaForm(retirosSinCuentaDAO);
         menuInicio = new MenuInicio(clientesDAO, domiciliosDAO);
         menuInicio.setVisible(true);
+        inicioSesion = new InicioSesion(conexion);
+        
         
     }
 }

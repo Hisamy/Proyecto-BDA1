@@ -1,6 +1,7 @@
 
 package org.itson.bda.BancoMB.bancoMB.dlg;
 
+import org.itson.bda.BancoMB.bancoMB.BancoMB;
 import org.itson.bda.proyectobda_247164_246943.daos.IClientesDAO;
 import org.itson.bda.proyectobda_247164_246943.daos.IDomiciliosDAO;
 
@@ -179,8 +180,7 @@ public class MenuInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        InicioSesion inicioSesion = new InicioSesion();
-        inicioSesion.setVisible(true);
+        BancoMB.inicioSesion.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
