@@ -17,13 +17,13 @@ import org.itson.bda.proyectobda_247164_246943.dtos.DomicilioNuevoDTO;
 import org.itson.bda.proyectobda_247164_246943.excepciones.PersistenciaException;
 
 public class RegistroCliente extends javax.swing.JFrame {
-    
+
     private IClientesDAO clienteDAO;
     private IDomiciliosDAO domicilioDAO;
 
     public RegistroCliente(IClientesDAO clienteDAO, IDomiciliosDAO domicilioDAO) {
         this.clienteDAO = clienteDAO;
-        this.domicilioDAO = domicilioDAO;        
+        this.domicilioDAO = domicilioDAO;
         this.initComponents();
     }
 
@@ -301,9 +301,9 @@ public class RegistroCliente extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnAceptar))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAceptar)
+                    .addComponent(btnCancelar))
                 .addContainerGap())
         );
 
@@ -352,7 +352,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         String calle = txtCalle.getText();
         String colonia = txtColonia.getText();
         String codigoPostal = txtCP.getText();
-        String numeroDomicilio = txtNumeroDomicilio.getText();
+        String numeroCasa = txtNumeroDomicilio.getText();
         String correoElectronico = txtClave.getText();
         String clave = txtClave.getText();
 
@@ -367,11 +367,11 @@ public class RegistroCliente extends javax.swing.JFrame {
             return;
         }
         //Se convierte el CP y numeroDomicilio de String a entero
-        Integer domicilio = null;
+        Integer numeroDeCasa = null;
         Integer codigo = null;
         try {
-            domicilio = Integer.parseInt(codigoPostal);
-            codigo = Integer.parseInt(numeroDomicilio);
+            numeroDeCasa = Integer.parseInt(numeroCasa);
+            codigo = Integer.parseInt(codigoPostal);
         } catch (NumberFormatException e) {
             //e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Dirección inválida", "Error", JOptionPane.ERROR_MESSAGE);
@@ -401,15 +401,15 @@ public class RegistroCliente extends javax.swing.JFrame {
         nuevoDomicilio.setCalle(calle);
         nuevoDomicilio.setColonia(colonia);
         nuevoDomicilio.setCP(codigo);
-        nuevoDomicilio.setNumeroDomicilio(domicilio);
+        nuevoDomicilio.setNumeroCasa(numeroDeCasa);
 
         try {
             Domicilio domicilioRegistrado = this.domicilioDAO.agregar(nuevoDomicilio);
-            nuevoCliente.setNumeroDomicilio(domicilioRegistrado.getNumero_domicilio());
+            nuevoCliente.setNumeroDomicilio(domicilioRegistrado.getNumeroDomicilio());
             Clientes clienteRegistrado = this.clienteDAO.agregar(nuevoCliente);
         } catch (PersistenciaException ex) {
             Logger.getLogger(RegistroCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        }
         BancoMB.menuInicio.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed

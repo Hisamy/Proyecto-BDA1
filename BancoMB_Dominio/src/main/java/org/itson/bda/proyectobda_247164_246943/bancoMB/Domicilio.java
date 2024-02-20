@@ -27,13 +27,15 @@ public class Domicilio {
         this.numeroCasa = numeroCasa;
     }
 
-    public int getNumero_domicilio() {
+    public int getNumeroDomicilio() {
         return numeroDomicilio;
     }
 
-    public void setNumero_domicilio(int numero_domicilio) {
-        this.numeroDomicilio = numero_domicilio;
+    public void setNumeroDomicilio(int numeroDomicilio) {
+        this.numeroDomicilio = numeroDomicilio;
     }
+
+    
 
     public String getCalle() {
         return calle;
