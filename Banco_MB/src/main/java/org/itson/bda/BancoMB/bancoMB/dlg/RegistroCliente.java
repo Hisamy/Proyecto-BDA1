@@ -1,6 +1,5 @@
 package org.itson.bda.BancoMB.bancoMB.dlg;
 
-import java.awt.HeadlessException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -345,6 +344,17 @@ public class RegistroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCPActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        agregarCliente();
+        BancoMB.menuInicio.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        BancoMB.menuInicio.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void agregarCliente(){
         String nombres = txtNombres.getText();
         String apellidoPaterno = txtApellidoPaterno1.getText();
         String apellidoMaterno = txtApellidoMaterno1.getText();
@@ -356,34 +366,30 @@ public class RegistroCliente extends javax.swing.JFrame {
         String correoElectronico = txtClave.getText();
         String clave = txtClave.getText();
 
-        //Se convierte la fecha de String a tipo Date
         Date fechaNacimientoDate = null;
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             java.util.Date parsedDate = dateFormat.parse(fechaNacimiento);
+            fechaNacimientoDate = new Date(parsedDate.getTime());
         } catch (ParseException e) {
-            //e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Fecha inválida", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        //Se convierte el CP y numeroDomicilio de String a entero
+
         Integer numeroDeCasa = null;
         Integer codigo = null;
         try {
             numeroDeCasa = Integer.parseInt(numeroCasa);
             codigo = Integer.parseInt(codigoPostal);
         } catch (NumberFormatException e) {
-            //e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Dirección inválida", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        //Se convierte la clave de String a Int
         Integer password = null;
         try {
             password = Integer.parseInt(clave);
         } catch (NumberFormatException e) {
-            e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Contraseña inválida", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -409,16 +415,10 @@ public class RegistroCliente extends javax.swing.JFrame {
             Clientes clienteRegistrado = this.clienteDAO.agregar(nuevoCliente);
         } catch (PersistenciaException ex) {
             Logger.getLogger(RegistroCliente.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Error al registrar el cliente", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        BancoMB.menuInicio.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnAceptarActionPerformed
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        BancoMB.menuInicio.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
