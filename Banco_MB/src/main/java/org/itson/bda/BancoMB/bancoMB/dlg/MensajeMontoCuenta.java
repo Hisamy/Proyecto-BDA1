@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package org.itson.bda.BancoMB.bancoMB.dlg;
 
-/**
- *
- * @author Usuario
- */
+import org.itson.bda.BancoMB.bancoMB.BancoMB;
+
+
 public class MensajeMontoCuenta extends javax.swing.JFrame {
 
     /**
@@ -53,6 +49,11 @@ public class MensajeMontoCuenta extends javax.swing.JFrame {
         lblCuenta.setText("Cuenta");
 
         btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         btnCrear.setText("Crear");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
@@ -140,6 +141,11 @@ public class MensajeMontoCuenta extends javax.swing.JFrame {
         sesionIniciada.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCrearActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        BancoMB.registroCliente.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
    
 
