@@ -15,7 +15,10 @@ public class Cuentas {
     private Integer numeroCuenta;
     private Date fechaApertura;
     private double saldo;
+<<<<<<< HEAD
     private int idCliente;
+=======
+>>>>>>> e151d9ecee6963e4b54424c12fcb2d7b2226d498
     
     /**
      * Constructor por omisión de cuentas.
@@ -30,7 +33,11 @@ public class Cuentas {
      * @param saldo regresa el saldo de la cuenta.
      * @param idCliente
      */
+<<<<<<< HEAD
     public Cuentas(Integer numeroCuenta, Date fechaApertura, double saldo, int idCliente) {
+=======
+    public Cuentas(Integer numeroCuenta, Date fechaApertura, double saldo) {
+>>>>>>> e151d9ecee6963e4b54424c12fcb2d7b2226d498
         this.numeroCuenta = numeroCuenta;
         this.fechaApertura = fechaApertura;
         this.saldo = saldo;
@@ -42,7 +49,11 @@ public class Cuentas {
      * @param saldo regresa el saldo de la cuenta.
      * @param idCliente
      */
+<<<<<<< HEAD
     public Cuentas(Date fechaApertura, double saldo, int idCliente) {
+=======
+    public Cuentas(Date fechaApertura, double saldo) {
+>>>>>>> e151d9ecee6963e4b54424c12fcb2d7b2226d498
         this.fechaApertura = fechaApertura;
         this.saldo = saldo;
         this.idCliente = idCliente;
@@ -86,7 +97,7 @@ public class Cuentas {
      * set del saldo de la cuenta.
      * @param saldo 
      */
-    public void setSaldo(float saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 

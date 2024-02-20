@@ -81,7 +81,10 @@ public class CuentasDAO implements ICuentasDAO {
                 Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL, Statement.RETURN_GENERATED_KEYS);) {
             comando.setDate(1, cuentaNueva.getFechaApertura());
             comando.setDouble(2, cuentaNueva.getSaldo());
+<<<<<<< HEAD
             comando.setInt(3,cuentaNueva.getIdCliente());
+=======
+>>>>>>> e151d9ecee6963e4b54424c12fcb2d7b2226d498
             int numeroRegistrosInsertados = comando.executeUpdate();
             logger.log(Level.INFO, "Se agregaron {0} cuentas", numeroRegistrosInsertados);
             ResultSet numeroCuentasGeneradas = comando.getGeneratedKeys();
